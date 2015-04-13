@@ -7,12 +7,12 @@ pages:
 6 contact us(email or phone) / help desk
 
 database:
-customer: cid*(auto_generate), password*, firstname*, lastname, store*, address, phone*
-store(location): sid,  lon*, lat*, address, phone
-product: pid*, pname*, ptype*, price*, dec
+customer: cname*(auto_generate), password*, firstname*, lastname, store*, a_address, phone*
+store(location): sname,  lon*, lat*, saddr, phone
+product: pid*, pname*, type*, price*, dec
 inventory: pid*, stock*
-order: cid*, pid*, quantity*, shipping addr*, card, status*
-cart: cid*, pid*, quantity*
+order: cname*, pid*, quantity*, shipping addr*, card, status*
+cart: cname*, pid*, quantity*
 
 when customer sign up, must choose a default store.
 
