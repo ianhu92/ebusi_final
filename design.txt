@@ -7,12 +7,20 @@ pages:
 6 contact us(email or phone) / help desk
 
 database:
-customer
-store(location)
-product
-category (for birthday/valentine)
-inventory
-order
-cart
+customer: cid*(auto_generate), password*, firstname*, lastname, store*, address, phone*
+store(location): sid,  lon*, lat*, address, phone
+product: pid*, pname*, ptype*, price*, dec
+inventory: pid*, stock*
+order: cid*, pid*, quantity*, shipping addr*, card, status*
+cart: cid*, pid*, quantity*
 
 when customer sign up, must choose a default store.
+
+
+database operation:
+customer: curd
+product: query
+inventory: query, update
+order: insert, search
+cart: curd
+store(location)
