@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Online Flower Shop</title>
+    <link href="css/normalize.css" rel="stylesheet" type="text/css"/>
+    <link href="css/header.css" rel="stylesheet" type="text/css"/>
+    <link href="css/cart.css" rel="stylesheet" type="text/css"/>
+    <script src="js/header.js"></script>
+    <script src="js/cart.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div id="headerLine">
+        <div id="logo">
+            <a class="headerLink" href="index.html"><h2>Shopping Cart Demo</h2></a>
+        </div>
+    </div>
+    <div id="accountLine">
+        <ul id="account">
+            <li class="accountLi" onclick="getCartProduct()">Hello user</li>
+            <li class="accountLi"><a class="headerLink" href="cart.html">Cart&nbsp;<span id="cartNum">0</span></a></li>
+        </ul>
+    </div>
+</div>
+<div id="body">
+    <div id="main">
+        <div id="cartTitle">
+            <h2>Shopping Cart</h2>
+        </div>
+        <ul id="productList">
+
+        </ul>
+    </div>
+    <div id="right">
+        <div id="checkout">
+            <div id="subtotal">
+                <h3>Subtotal: $<span id="subtotalNum">250</span></h3>
+            </div>
+            <div id="checkoutBtnDiv">
+                <input id="checkoutBtn" type="button" value="Check Out" />
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
