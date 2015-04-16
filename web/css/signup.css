@@ -1,0 +1,28 @@
+#signup{
+    min-width:200px;
+    min-height:200px;
+    width:600px;
+    height:50%;
+    background-color: lightblue;
+    margin:50px auto 0 auto;
+    padding:50px 0;
+    border-radius:8px;
+    text-align: center;
+}
+#signup div{
+    display:inline-block;
+    margin:5px auto 0 auto;
+    width:100%;
+}
+#signup div span{
+    width:90px;
+    display: inline-block;
+    text-align: left;
+}
+#signup div input[type=submit]{
+    border:1px solid #ccc;
+    background:white;
+    border-radius: 3px;
+    width:80px;
+    height:30px;
+}

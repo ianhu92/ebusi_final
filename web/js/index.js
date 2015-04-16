@@ -3,6 +3,7 @@ window.onload = function () {
     getCartNum();
 }
 function getProduct() {
+    var category=document.getElementById("categoryText").innerHTML;
     var xmlhttp = getXMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -32,11 +33,16 @@ function getProduct() {
                 imgE.className = "thumbnail";
                 imgE.src = img;
 
-                var p = document.createElement("p");
-                div.appendChild(p);
-                p.innerHTML = productname;
+                var a = document.createElement("a");
+                div.appendChild(a);
+                a.className="productName";
+                a.id="productName"+productid;
+                a.innerHTML = productname;
+                a.onclick=function(){
+                    getProductDetail(this);
+                };
 
-                p = document.createElement("p");
+                var p = document.createElement("p");
                 div.appendChild(p);
                 p.innerHTML = "$" + price;
 
@@ -51,7 +57,7 @@ function getProduct() {
             }
         }
     };
-    xmlhttp.open("Get", "GetProduct", true);
+    xmlhttp.open("Get", "GetProduct?category=" + category, true);
     xmlhttp.send();
 }
 function addToCart(a) {
@@ -65,6 +71,24 @@ function addToCart(a) {
             }
         };
         xmlhttp.open("Post", "AddToCart", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("productid=" + productid);
+    }
+    else {
+        alert("Wrong invocation.");
+    }
+}
+function getProductDetail(a){
+    var productid= a.id.substring(11);
+    if (productid !== "") {
+        var xmlhttp = getXMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                //display product detail
+                alert(xmlhttp.responseText);
+            }
+        };
+        xmlhttp.open("Post", "GetProductDetail", true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("productid=" + productid);
     }

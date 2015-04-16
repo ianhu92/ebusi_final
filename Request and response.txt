@@ -1,4 +1,4 @@
-Signup: send "username","password", "email", "firstname", "lastname", "store", "address", "phone"
+Signup: send "username","password", "email", "firstname", "lastname", "store", "street", "city", "state", "zip", "phone"
 Response: "Successfully signed up" or "Failed to signed up" or reason of error.
 
 Signin: send "username","password"
@@ -24,5 +24,15 @@ Response: seccessfully delete or reason of error.
 
 ChangeQuantity: send "userid","productid","quantity"
 Response: seccessfully change or reason of error.
+
+GetProductDetail: send "productid"
+Response: A json string that contains a node "product", which contains "productid", "productname", "price", "inventory", "img" and "description"!!!.
+
+changePassword: send "old" and "new"
+Response: seccessfully change or reason of error.
+
+changeSetting: send "key" and "value"
+Response: seccessfully change or reason of error.
+PS: key is "username" or "street", and value is the value of it.
 
 To be continue.

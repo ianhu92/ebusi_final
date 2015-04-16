@@ -10,17 +10,25 @@
     <script src="js/cart.js"></script>
 </head>
 <body>
-
 <div id="header">
     <div id="headerLine">
         <div id="logo">
-            <a class="headerLink" href="index.html"><h2>Shopping Cart Demo</h2></a>
+            <a class="headerLink" href="index.html"><h2>Pittsburgh Flower Shop</h2></a>
         </div>
     </div>
     <div id="accountLine">
         <ul id="account">
-            <li class="accountLi" onclick="getCartProduct()">Hello user</li>
+            <li class="accountLi"><a class="headerLink" href="signin.html">Sign In</a></li>
             <li class="accountLi"><a class="headerLink" href="cart.html">Cart&nbsp;<span id="cartNum">0</span></a></li>
+        </ul>
+    </div>
+    <div id="nav">
+        <ul id="navUl">
+            <li class="navLi"><a href="index.html">Best Sellers!</a></li>
+            <li class="navLi"><a href="category2.html">Birthday</a></li>
+            <li class="navLi"><a href="category3.html">Occasion</a></li>
+            <li class="navLi"><a href="category4.html">something</a></li>
+            <li class="navLi"><a href="category5.html">Same Day</a></li>
         </ul>
     </div>
 </div>
@@ -36,7 +44,7 @@
     <div id="right">
         <div id="checkout">
             <div id="subtotal">
-                <h3>Subtotal: $<span id="subtotalNum">250</span></h3>
+                <h3>Subtotal: $<span id="subtotalNum">0</span></h3>
             </div>
             <div id="checkoutBtnDiv">
                 <input id="checkoutBtn" type="button" value="Check Out" />

@@ -1,9 +1,9 @@
 pages:
-1 home page
-2 product details(flower name*, img*, type*, price*, decription)
-3 shopping cart 
+1 product category page (best seller as home page)
+2 product details(productid*, productname*, img*, type*, price*, inventory*, decription)
+3 shopping cart (productid*, quantity*)
 4 place order (date&time, products, quantity, shipping address, card, status, payment) (fake online payment / cash or check(in person))
-5 customer (settings....)  (userid*, username*, password*, email*, firstname*, lastname, store*, address, phone*)
+5 customer (settings....)  (userid*, username*, password*, email*, firstname*, lastname, street, city, state, zip, phone*)
 6 contact us(email or phone) / help desk
 
 database:
