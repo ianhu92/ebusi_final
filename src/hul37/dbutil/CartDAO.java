@@ -6,6 +6,7 @@
 package hul37.dbutil;
 
 import hul37.beans.CartBean;
+import hul37.beans.CartProductBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +26,7 @@ public class CartDAO {
     private final String INSERT = "INSERT INTO flower_store.cart (cname, pid, quantity) VALUES (?, ?, ?);";
     private final String UPDATE = "UPDATE flower_store.cart SET quantity = ? WHERE cname = ? AND pid = ?";
     private final String GET_CART = "SELECT * FROM flower_store.cart WHERE cname = ?";
+    private final String GET_CART_PRODUCT = "SELECT p.pid pid, pname, price, stock, quantity FROM flower_store.cart c, flower_store.product p, flower_store.inventory i WHERE c.cname = ? AND c.pid = p.pid AND c.pid = i.pid ";
     private final String DELETE = "DELETE FROM flower_store.cart WHERE cname = ? AND pid = ?";
 
     public CartDAO() {
@@ -85,6 +87,29 @@ public class CartDAO {
             Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
         }     
         CartBean[] cart = new CartBean[al.size()];
+        al.toArray(cart);
+        return cart;
+    }
+    
+    public CartProductBean[] getCartProduct(String name) {
+        ArrayList<CartProductBean> al = new ArrayList<>();
+        try {
+            pstmt = con.prepareStatement(GET_CART_PRODUCT);
+            pstmt.setString(1, name);
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+                int pid = rs.getInt("pid");
+                int quantity = rs.getInt("quantity");
+                int stock = rs.getInt("stock");
+                double price = rs.getDouble("price");
+                String pname = rs.getString("pname");
+                CartProductBean cartProduct = new CartProductBean(pid, pname, price, stock, quantity);
+                al.add(cartProduct);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+        CartProductBean[] cart = new CartProductBean[al.size()];
         al.toArray(cart);
         return cart;
     }
