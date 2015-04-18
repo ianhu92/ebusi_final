@@ -16,7 +16,7 @@ function getCartNum(){
             document.getElementById("cartNum").innerHTML=xmlhttp.responseText;
         }
     };
-    xmlhttp.open("Post", "GetCartNum", false);
+    xmlhttp.open("Post", "GetCardNum", false);
     xmlhttp.send();
 }
 function getSession(){
@@ -24,7 +24,7 @@ function getSession(){
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             username=xmlhttp.responseText;
-            if(username!="no session"){
+            if(username!="Invalid Session."){
                 document.getElementById("accountName").innerHTML="Hello "+username;
                 document.getElementById("accountName").setAttribute("href","order.html");
             }

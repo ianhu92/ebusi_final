@@ -31,9 +31,10 @@ public class GetProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out=response.getWriter();
         String type=request.getParameter("category");
         String sql="Select pid,pname,price,img,stock from product where product.pid=inventory.pid  and type='"+type+"'";
-        String url="";
+        String url="index.html";
         DBbean db=new DBbean();
         try {
             ResultSet rs=db.query(sql);
@@ -48,9 +49,7 @@ public class GetProductServlet extends HttpServlet {
                 product.append("img", rs.getString(4));
                 productlist.append("product",product);
             }
-            request.setAttribute("product", productlist);
-            RequestDispatcher rd=request.getRequestDispatcher(url);
-            rd.forward(request, response);
+            out.write(productlist.toString());
             
         } catch (Exception ex) {
             Logger.getLogger(GetProductServlet.class.getName()).log(Level.SEVERE, null, ex);

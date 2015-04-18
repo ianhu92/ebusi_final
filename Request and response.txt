@@ -2,10 +2,10 @@ Signup: send "username","password", "email", "firstname", "lastname", "store", "
 Response: "Successfully signed up" or "Failed to signed up" or reason of error.
 
 Signin: send "username","password"
-Response: "userid" if succeed, or reason of error.
+Response: "username" if succeed, or reason of error.
 PS: Keep session in system. It's better to send cookies to browser.
 
-GetCardNum: send "userid"
+GetCardNum: get "username" from session
 Response: A number means how many type of products did user add to shopping cart.
 
 GetProduct:  send "category"
@@ -13,16 +13,16 @@ Response: A json string that contains a node "product", which contains "producti
 The "img" should contain the relative url of the image file.
 Example: {product:{productid,productname,price,inventory,img}}
 
-AddToCart: send "userid","productid"
+AddToCart: get "username",send "productid"
 Response: "Seccessfully add to shopping cart." or reason of error.
 
-GetCartProduct: send "userid"
+GetCartProduct: get "username" from session
 Response: A json string that contains a node "product", which contains "productid", "productname", "price", "inventory", "img" and "quantity"!!!.
 
-DeleteProduct: send "userid","productid"
+DeleteProduct: get "username" from session,"productid"
 Response: seccessfully delete or reason of error.
 
-ChangeQuantity: send "userid","productid","quantity"
+ChangeQuantity: get "username" from session,"productid","quantity"
 Response: seccessfully change or reason of error.
 
 GetProductDetail: send "productid"
@@ -34,5 +34,15 @@ Response: seccessfully change or reason of error.
 changeSetting: send "key" and "value"
 Response: seccessfully change or reason of error.
 PS: key is "username" or "street", and value is the value of it.
+
+getOrder: get "username" from session
+Response: A json string "order", contains "product", "date", "address", "totalPrice", where "product" is a json node contains "img","productName","price","quantity".
+
+placeOrder: get "username" from session
+Place order with products in cart.
+Response: "success" or "fail"
+
+productDetail: send "productid"
+Response: A jsp page with product information.
 
 To be continue.
