@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author yanglijia
+ * @author Ian
  */
 @WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
 public class LogoutServlet extends HttpServlet {
@@ -32,16 +32,27 @@ public class LogoutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                PrintWriter out= response.getWriter();
-                HttpSession session = request.getSession(false);
-                if(!session.equals(null)){
-                     session.invalidate();
-                     out.print("successful");
-                }
-                else{
-                    out.print("error");
-                }
-               
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession(false);
+        if (!session.equals(null)) {
+            session.invalidate();
+            PrintWriter out = response.getWriter();
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Successfully log out</title>");
+                out.println("<script type='text/javascript'>");
+                out.println("window.onload=function(){setTimeout(function(){window.location=\"signin.html\"},5000)}");
+                out.println("</script> ");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h2>Successfully log out.</h2>");
+                out.println("<h2>The page will be redicted in 5 seconds.</h2>");
+                out.println("</body>");
+                out.println("</html>");
+            out.print("successful");
+        } else {
+            out.print("error");
         }
     }
 

@@ -35,6 +35,7 @@ function getSession() {
 
                 var a = document.createElement("a");
                 a.className = "headerLink";
+                a.id="logout";
                 a.onclick = function () {
                     Logout();
                 };
@@ -54,6 +55,6 @@ function Logout() {
             alert(xmlhttp.responseText);
         }
     };
-    xmlhttp.open("Post", "Logout", true);
+    xmlhttp.open("Post", "LogoutServlet", true);
     xmlhttp.send();
 }
