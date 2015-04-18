@@ -37,7 +37,7 @@ public class GetProductServlet extends HttpServlet {
         DBbean db=new DBbean();
         try {
             ResultSet rs=db.query(sql);
-            ArrayList productlist=new ArrayList();
+            JSONObject productlist=new JSONObject();
             while (rs.next())
             {
                 JSONObject product=new JSONObject();
@@ -46,7 +46,7 @@ public class GetProductServlet extends HttpServlet {
                 product.append("price", rs.getString(3));
                 product.append("inventory", rs.getString(5));
                 product.append("img", rs.getString(4));
-                productlist.add(product);
+                productlist.append("product",product);
             }
             request.setAttribute("product", productlist);
             RequestDispatcher rd=request.getRequestDispatcher(url);
