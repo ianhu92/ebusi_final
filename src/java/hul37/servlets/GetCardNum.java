@@ -43,7 +43,7 @@ public class GetCardNum extends HttpServlet {
             CartDAO cartDAO = new CartDAO();
             cart = cartDAO.getCart(cname);
         }
-        out.write(cart.length);
+        out.write(""+cart.length);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
