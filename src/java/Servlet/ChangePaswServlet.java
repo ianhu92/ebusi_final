@@ -8,6 +8,7 @@ package Servlet;
 import JavaBean.DBbean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -26,20 +27,34 @@ public class ChangePaswServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url="";
-        String username =request.getParameter("username");
+        PrintWriter out=response.getWriter();
+        String username =(String)request.getSession().getAttribute("username");
+        String oldpassword=request.getParameter("old");
         String newpassword=request.getParameter("new");
         DBbean db=new DBbean();
-        String sql="update customer set password='"+newpassword+"' where cname='"+username+"'";
+        String search="Select password from customer where cname='"+username+"' and password='"+oldpassword+"'";
         try {
-            db.update(sql);
-            RequestDispatcher ds=request.getRequestDispatcher(url);
-            ds.forward(request, response);
-           
+            ResultSet rs=db.query(search);
+            if(rs.next()) {      
+                String sql="update customer set password='"+newpassword+"' where cname='"+username+"'";
+                try {
+                    db.update(sql);
+                    out.print("Update password successfully!");
+                } 
             
-        } catch (Exception ex) {
+                catch (Exception ex) {
+                    Logger.getLogger(ChangePaswServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            }
+            else{
+                 out.print("Your old password may be wrong, try again!");
+            }
+        } 
+        catch (Exception ex) {
             Logger.getLogger(ChangePaswServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
        
     }
 

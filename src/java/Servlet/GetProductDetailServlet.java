@@ -18,7 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.*;
+import org.json.JSONObject;
 
 /**
  *
@@ -27,33 +27,44 @@ import org.json.*;
 @WebServlet(name = "GetProductDetailServlet", urlPatterns = {"/GetProductDetailServlet"})
 public class GetProductDetailServlet extends HttpServlet {
 
+  
+
+
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String productid = request.getParameter("productid");
-        String sql = "Select pid,pname,price,stock,img,des, from product where product.pid=inventory.pid  and pid='" + productid + "'";
-        String url = "";
-        DBbean db = new DBbean();
+        PrintWriter out=response.getWriter();
+        String productid =request.getParameter("productid");
+        String sql="Select product.pid,product.pname,product.price,inventory.stock,product.img,product.des from product,inventory where product.pid='"+productid+"'";
+       
+        DBbean db=new DBbean();
         try {
-            ResultSet rs = db.query(sql);
-            JSONObject productlist = new JSONObject();
-            while (rs.next()) {
-                JSONObject product = new JSONObject();
+            ResultSet rs=db.query(sql);
+            if(rs.next())
+            {
+                JSONObject product=new JSONObject();
                 product.append("productid", rs.getString(1));
                 product.append("productname", rs.getString(2));
                 product.append("price", rs.getString(3));
                 product.append("inventory", rs.getString(4));
                 product.append("img", rs.getString(5));
                 product.append("description", rs.getString(6));
-                productlist.append("product",product);
+                String productString=product.toString();
+                out.print(productString);
             }
-            request.setAttribute("product", productlist);
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
-
+            else{
+                out.print("This prodct id does not exist!");
+            }
+          
+            
+            
         } catch (Exception ex) {
             Logger.getLogger(GetProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
 }
+
+    
+

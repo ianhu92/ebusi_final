@@ -30,29 +30,31 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out=response.getWriter();
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         String email=request.getParameter("email");
         String firstname=request.getParameter("firstname");
         String lastname=request.getParameter("lastname");
-        String address=request.getParameter("address");
+        String address=request.getParameter("street")+request.getParameter("city")+request.getParameter("state")+request.getParameter("zip");
         String phone=request.getParameter("phone");
         
         DBbean db=new DBbean();
-        String sql1="Select * from customer where username='"+username+"'";
+        String sql1="Select * from customer where cname='"+username+"'";
         try {
             ResultSet rs=db.query(sql1);
-            if (rs.next()){
+            if (!rs.next()){
                 String sql="Insert into customer values('"+username+"','"+password+"','"+email+"','"+firstname+"','"+lastname+"','"+address+"','"+phone+"')";
                 try {
                     db.update(sql);
+                    out.print("Register successfully.");
                 } catch (Exception ex) {
                     Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
             }
             else{
-                PrintWriter out=response.getWriter();
+                
                 out.print("The username has been used already.");
             }
         } catch (Exception ex) {

@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
         String pwd=request.getParameter("password");
         DBbean db=new DBbean();
         
-        String sql="select * from customer where userID='"+id+"' AND password='"+pwd+"'";
+        String sql="select * from customer where cname='"+id+"' AND password='"+pwd+"'";
         try {
             ResultSet rs=db.query(sql);
             if (rs.next())
@@ -47,7 +47,6 @@ public class LoginServlet extends HttpServlet {
             else{
                 PrintWriter out=response.getWriter();
                 out.print("The username or password is wrong.");
-                
             }
         } catch (Exception ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
