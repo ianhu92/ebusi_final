@@ -25,35 +25,54 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url="index.html";
-        String id=request.getParameter("username");
-        String pwd=request.getParameter("password");
-        DBbean db=new DBbean();
-        
-        String sql="select * from customer where cname='"+id+"' AND password='"+pwd+"'";
+        String url = "index.html";
+        String id = request.getParameter("username");
+        String pwd = request.getParameter("password");
+        DBbean db = new DBbean();
+
+        String sql = "select * from customer where cname='" + id + "' AND password='" + pwd + "'";
         try {
-            ResultSet rs=db.query(sql);
-            if (rs.next())
-            {
+            ResultSet rs = db.query(sql);
+            if (rs.next()) {
                 request.getSession().setAttribute("username", id);
-                RequestDispatcher dispatcher=request.getRequestDispatcher(url);
-                dispatcher.forward(request, response);
-                
-            }
-            else{
-                PrintWriter out=response.getWriter();
-                out.print("The username or password is wrong.");
+                PrintWriter out = response.getWriter();
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Login succeed</title>");
+                out.println("<script type='text/javascript'>");
+                out.println("window.onload=function(){setTimeout(function(){window.location=\"index.html\"},5000)}");
+                out.println("</script> ");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h2>Successfully signed in.</h2>");
+                out.println("<h2>The page will be redicted in 5 seconds.</h2>");
+                out.println("</body>");
+                out.println("</html>");
+
+            } else {
+                PrintWriter out = response.getWriter();
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Login error</title>");
+                out.println("<script type='text/javascript'>");
+                out.println("window.onload=function(){setTimeout(function(){window.location=\"signin.html\"},5000)}");
+                out.println("</script> ");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h2>The username or password is wrong.</h2>");
+                out.println("<h2>The page will be redicted in 5 seconds.</h2>");
+                out.println("</body>");
+                out.println("</html>");
             }
         } catch (Exception ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-    }
 
-    
+    }
 
 }
