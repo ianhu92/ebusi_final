@@ -43,20 +43,20 @@
     <div id="main">
         <h2>Setting</h2>
 
-        <form id="changePassword" name="changePassword" action="changePassword">
+        <form id="changePassword" name="changePassword" action="ChangePaswServlet" method="post" onsubmit="return validatePassword()">
             <h3>Change Password</h3>
 
             <div>
-                <span>Username*&nbsp;</span>
-                <input type="text" name="username"/>
+                <span>Old password*&nbsp;</span>
+                <input id="oldpassword" type="password" name="oldpassword"/>
             </div>
             <div>
-                <span>Password*&nbsp;</span>
-                <input type="password" name="password"/>
+                <span>New Password*&nbsp;</span>
+                <input id="password" type="password" name="password"/>
             </div>
             <div>
-                <span>Password*&nbsp;</span>
-                <input type="password" name="password2"/>
+                <span>New Password*&nbsp;</span>
+                <input id="password2" type="password" name="password2"/>
             </div>
             <div>
                 <input type="submit" value="Change Password"/>
@@ -64,46 +64,33 @@
         </form>
         <form id="changeSetting" name="changeSetting" action="changeSetting">
             <h3>Change Other Settings</h3>
-
             <div>
-                <span>Username*&nbsp;</span>
-                <input type="text" name="username"/>
-            </div>
-            <div>
-                <span>Password*&nbsp;</span>
-                <input type="password" name="password"/>
-            </div>
-            <div>
-                <span>Password*&nbsp;</span>
-                <input type="password" name="password2"/>
-            </div>
-            <div>
-                <span>Email*&nbsp;</span>
-                <input type="text" name="password"/>
+                <span>Email&nbsp;</span>
+                <input type="text" name="email"/>
             </div>
             <div>
                 <span>Firstname&nbsp;</span>
-                <input type="text" name="password"/>
+                <input type="text" name="firstname"/>
             </div>
             <div>
                 <span>Lastname&nbsp;</span>
-                <input type="text" name="password"/>
+                <input type="text" name="lastname"/>
             </div>
             <div>
                 <span>Street&nbsp;</span>
-                <input type="text" name="password"/>
+                <input type="text" name="street"/>
             </div>
             <div>
                 <span>City&nbsp;</span>
-                <input type="text" name="password"/>
+                <input type="text" name="city"/>
             </div>
             <div>
                 <span>State&nbsp;</span>
-                <input type="text" name="password"/>
+                <input type="text" name="state"/>
             </div>
             <div>
                 <span>Phone&nbsp;</span>
-                <input type="text" name="password"/>
+                <input type="text" name="phone"/>
             </div>
             <div>
                 <input type="submit" value="Change Setting"/>

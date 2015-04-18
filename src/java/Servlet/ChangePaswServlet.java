@@ -24,40 +24,58 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ChangePaswServlet", urlPatterns = {"/ChangePaswServlet"})
 public class ChangePaswServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out=response.getWriter();
-        String username =(String)request.getSession().getAttribute("username");
-        String oldpassword=request.getParameter("old");
-        String newpassword=request.getParameter("new");
-        DBbean db=new DBbean();
-        String search="Select password from customer where cname='"+username+"' and password='"+oldpassword+"'";
+        PrintWriter out = response.getWriter();
+        String username = (String) request.getSession().getAttribute("username");
+        String oldpassword = request.getParameter("oldpassword");
+        String newpassword = request.getParameter("password");
+        DBbean db = new DBbean();
+        String search = "Select password from customer where cname='" + username + "' and password='" + oldpassword + "'";
         try {
-            ResultSet rs=db.query(search);
-            if(rs.next()) {      
-                String sql="update customer set password='"+newpassword+"' where cname='"+username+"'";
+            ResultSet rs = db.query(search);
+            if (rs.next()) {
+                String sql = "update customer set password='" + newpassword + "' where cname='" + username + "'";
                 try {
                     db.update(sql);
-                    out.print("Update password successfully!");
-                } 
-            
-                catch (Exception ex) {
+                    out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Update password successfully!</title>");
+                    out.println("<script type='text/javascript'>");
+                    out.println("window.onload=function(){setTimeout(function(){window.location=\"setting.html\"},5000)}");
+                    out.println("</script> ");
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<h2>Update password successfully!</h2>");
+                    out.println("<h2>The page will be redicted in 5 seconds.</h2>");
+                    out.println("</body>");
+                    out.println("</html>");
+                } catch (Exception ex) {
                     Logger.getLogger(ChangePaswServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            
+
+            } else {
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Your old password may be wrong, try again!</title>");
+                out.println("<script type='text/javascript'>");
+                out.println("window.onload=function(){setTimeout(function(){window.location=\"setting.html\"},5000)}");
+                out.println("</script> ");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h2>Your old password may be wrong, try again!</h2>");
+                out.println("<h2>The page will be redicted in 5 seconds.</h2>");
+                out.println("</body>");
+                out.println("</html>");
             }
-            else{
-                 out.print("Your old password may be wrong, try again!");
-            }
-        } 
-        catch (Exception ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ChangePaswServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-       
-    }
 
- 
+    }
 
 }
