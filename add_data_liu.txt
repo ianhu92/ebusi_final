@@ -1,3 +1,13 @@
+CREATE TABLE `order` (
+  `cname` varchar(20) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `shippingaddr` varchar(64) NOT NULL,
+  `card` varchar(128) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 INSERT INTO `order` (`cname`, `pid`, `quantity`, `shippingaddr`, `card`, `status`, `datetime`) VALUES
 ('spring', 3, 12, '135 forbes ave, pittsburgh', 'cash', 'completed', '2015-04-16 00:02:02'),
 ('spring', 3, 12, '135 forbes ave, pittsburgh', 'cash', 'completed', '2015-04-16 00:02:35'),
