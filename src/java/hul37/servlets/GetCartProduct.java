@@ -51,7 +51,7 @@ public class GetCartProduct extends HttpServlet {
                 product.put("price", cpb.getPrice());
                 product.put("inventory", cpb.getStock());
                 product.put("quantity", cpb.getQuantity());
-                list.add(cpb);
+                list.add(product);
             }
             msg = list.toJSONString();
         }
