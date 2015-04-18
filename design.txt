@@ -7,8 +7,10 @@ pages:
 6 contact us(email or phone) / help desk
 
 database:
-customer: cname*(auto_generate), password*, firstname*, lastname, store*, a_address, phone*
-store(location): sname,  lon*, lat*, saddr, phone
+customer: cname*(auto_generate), password*, firstname*, lastname,  a_address, phone*
+
+//{store(location): sname,  lon*, lat*, saddr, phone}
+
 product: pid*, pname*, type*, price*, dec
 inventory: pid*, stock*
 order: cname*, pid*, quantity*, shipping addr*, card, status*
