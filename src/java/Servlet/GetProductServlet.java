@@ -33,7 +33,7 @@ public class GetProductServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out=response.getWriter();
         String type=request.getParameter("category");
-        String sql="Select pid,pname,price,img,stock from product where product.pid=inventory.pid  and type='"+type+"'";
+        String sql="Select product.pid,pname,price,img,stock from product,inventory where product.pid=inventory.pid  and type='"+type+"'";
         String url="index.html";
         DBbean db=new DBbean();
         try {
