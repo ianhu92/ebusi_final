@@ -7,6 +7,7 @@ function getCartProduct() {
     var xmlhttp = getXMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            alert(xmlhttp.responseText);
             var jo = JSON.parse(xmlhttp.responseText);
             var productid;
             var productname;
@@ -148,7 +149,7 @@ function getCartProduct() {
             document.getElementById("subtotalNum").innerHTML = subtotal.toFixed(2);
         }
     };
-    xmlhttp.open("Post", "GetCartProduct", true);
+    xmlhttp.open("Post", "GetCartProduct", false);
     xmlhttp.send();
 }
 function deleteProduct(a) {

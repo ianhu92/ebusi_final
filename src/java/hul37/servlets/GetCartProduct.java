@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 
 /**
  *
@@ -39,21 +39,25 @@ public class GetCartProduct extends HttpServlet {
         PrintWriter out = response.getWriter();
         String msg = "Invalid Session";
         HttpSession session = request.getSession(false);
-        if(session != null) {
+        if (session != null) {
             String cname = (String) session.getAttribute("username");
             CartDAO cartDAO = new CartDAO();
-            CartProductBean[] results =  cartDAO.getCartProduct(cname);
-            JSONArray list = new JSONArray();
-            for(CartProductBean cpb : results) {
-                JSONObject product = new JSONObject();
-                product.put("productid", cpb.getPid());
-                product.put("productname", cpb.getPname());
-                product.put("price", cpb.getPrice());
-                product.put("inventory", cpb.getStock());
-                product.put("quantity", cpb.getQuantity());
-                list.add(product);
+            CartProductBean[] results = cartDAO.getCartProduct(cname);
+            JSONObject list = new JSONObject();
+            try {
+                for (CartProductBean cpb : results) {
+                    JSONObject product = new JSONObject();
+                    product.append("productid", cpb.getPid());
+                    product.append("productname", cpb.getPname());
+                    product.append("price", cpb.getPrice());
+                    product.append("inventory", cpb.getStock());
+                    product.append("quantity", cpb.getQuantity());
+                    list.append("product", product);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            msg = list.toJSONString();
+            msg = list.toString();
         }
         out.write(msg);
     }

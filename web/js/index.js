@@ -58,7 +58,7 @@ function getProduct() {
             }
         }
     };
-    xmlhttp.open("Post", "GetProductServlet", false);
+    xmlhttp.open("Post", "GetProductServlet", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("category=" + category);
 }
@@ -74,7 +74,7 @@ function addToCart(a) {
         };
         xmlhttp.open("Post", "AddToCart", true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.send("productid=" + productid);
+        xmlhttp.send("productid=" + productid+"&quantity=1");
     }
     else {
         alert("Wrong invocation.");

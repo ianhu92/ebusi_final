@@ -16,7 +16,7 @@ function getCartNum() {
             document.getElementById("cartNum").innerHTML = xmlhttp.responseText;
         }
     };
-    xmlhttp.open("Post", "GetCardNum", false);
+    xmlhttp.open("Post", "GetCardNum", true);
     xmlhttp.send();
 }
 function getSession() {
@@ -36,7 +36,7 @@ function getSession() {
             }
         }
     };
-    xmlhttp.open("Post", "GetSession", false);
+    xmlhttp.open("Post", "GetSession", true);
     xmlhttp.send();
 }
 
@@ -49,6 +49,6 @@ function logout() {
             getCartNum();
         }
     };
-    xmlhttp.open("Post", "LogoutServlet", false);
+    xmlhttp.open("Post", "LogoutServlet", true);
     xmlhttp.send();
 }
