@@ -1,0 +1,36 @@
+#body{
+    padding:50px 0 0 0;
+    width:80%;
+    margin: 0 auto;
+}
+#img{
+    float:left;
+    width:30%;
+}
+#description{
+    width:70%;
+    float:left;
+    padding:0 0 0 50px;
+}
+#description div{
+    padding:5px 0 0 0;
+}
+#descriptionText{
+    max-width:100%;
+    min-height:100px;
+    word-wrap: break-word;
+}
+.addToCart {
+    display: inline-block;
+    text-align: center;
+    background-color: #635da8;
+    color:#fff;
+    border-radius: 3px;
+    text-align: center;
+    vertical-align: middle;
+    width: 160px;
+    height: 25px;
+    line-height:25px;
+    cursor: pointer;
+    box-shadow: 2px 2px 3px #aaa;
+}

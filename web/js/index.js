@@ -9,6 +9,7 @@ function getProduct() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var jo = JSON.parse(xmlhttp.responseText);
+            alert(jo);
             var productid;
             var productname;
             var img;
@@ -58,8 +59,9 @@ function getProduct() {
             }
         }
     };
-    xmlhttp.open("Get", "GetProduct?category=" + category, true);
-    xmlhttp.send();
+    xmlhttp.open("Post", "GetProductServlet", false);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("category=" + category);
 }
 function addToCart(a) {
     var productid = a.id.substring(9);

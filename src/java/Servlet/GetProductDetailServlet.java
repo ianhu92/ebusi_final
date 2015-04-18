@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.*;
 
 /**
  *
@@ -26,23 +27,18 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "GetProductDetailServlet", urlPatterns = {"/GetProductDetailServlet"})
 public class GetProductDetailServlet extends HttpServlet {
 
-  
-
-
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String productid =request.getParameter("productid");
-        String sql="Select pid,pname,price,stock,img,des, from product where product.pid=inventory.pid  and pid='"+productid+"'";
-        String url="";
-        DBbean db=new DBbean();
+        String productid = request.getParameter("productid");
+        String sql = "Select pid,pname,price,stock,img,des, from product where product.pid=inventory.pid  and pid='" + productid + "'";
+        String url = "";
+        DBbean db = new DBbean();
         try {
-            ResultSet rs=db.query(sql);
-            ArrayList productlist=new ArrayList();
-            while (rs.next())
-            {
-                JSONObject product=new JSONObject();
+            ResultSet rs = db.query(sql);
+            ArrayList productlist = new ArrayList();
+            while (rs.next()) {
+                JSONObject product = new JSONObject();
                 product.append("productid", rs.getString(1));
                 product.append("productname", rs.getString(2));
                 product.append("price", rs.getString(3));
@@ -52,14 +48,12 @@ public class GetProductDetailServlet extends HttpServlet {
                 productlist.add(product);
             }
             request.setAttribute("product", productlist);
-            RequestDispatcher rd=request.getRequestDispatcher(url);
+            RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
-            
+
         } catch (Exception ex) {
             Logger.getLogger(GetProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-
-    
-
+}
