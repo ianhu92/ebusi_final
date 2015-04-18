@@ -36,21 +36,7 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         if (!session.equals(null)) {
             session.invalidate();
-            PrintWriter out = response.getWriter();
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Successfully log out</title>");
-                out.println("<script type='text/javascript'>");
-                out.println("window.onload=function(){setTimeout(function(){window.location=\"signin.html\"},5000)}");
-                out.println("</script> ");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h2>Successfully log out.</h2>");
-                out.println("<h2>The page will be redicted in 5 seconds.</h2>");
-                out.println("</body>");
-                out.println("</html>");
-            out.print("successful");
+            out.print("Successfully log out.");
         } else {
             out.print("error");
         }

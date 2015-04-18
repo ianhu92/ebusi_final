@@ -28,19 +28,11 @@ function getSession() {
             if (username != "Invalid Session") {
                 document.getElementById("accountName").innerHTML = "Hello " + username;
                 document.getElementById("accountName").setAttribute("href", "order.html");
-                var account = document.getElementById("account");
-                var li = document.createElement("li");
-                li.className = "accountLi";
-                account.appendChild(li);
-
-                var a = document.createElement("a");
-                a.className = "headerLink";
-                a.id="logout";
-                a.onclick = function () {
-                    Logout();
-                };
-                a.innerHTML = "Log Out";
-                li.appendChild(a);
+                document.getElementById("logoutLi").style.display="inline-block";
+            }else{
+                document.getElementById("accountName").innerHTML="Sign in";
+                document.getElementById("accountName").setAttribute("href", "signin.html");
+                document.getElementById("logoutLi").style.display="none";
             }
         }
     };
@@ -48,13 +40,15 @@ function getSession() {
     xmlhttp.send();
 }
 
-function Logout() {
+function logout() {
     var xmlhttp = getXMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             alert(xmlhttp.responseText);
+            getSession();
+            getCartNum();
         }
     };
-    xmlhttp.open("Post", "LogoutServlet", true);
+    xmlhttp.open("Post", "LogoutServlet", false);
     xmlhttp.send();
 }
