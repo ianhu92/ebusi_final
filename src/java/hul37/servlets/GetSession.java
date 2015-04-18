@@ -5,23 +5,22 @@
  */
 package hul37.servlets;
 
-import hul37.beans.CartBean;
-import hul37.dbutil.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author violetliu
  */
-@WebServlet(name = "DeleteProduct", urlPatterns = {"/DeleteProduct"})
-public class DeleteProduct extends HttpServlet {
+@WebServlet(name = "GetSession", urlPatterns = {"/GetSession"})
+public class GetSession extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,18 +33,15 @@ public class DeleteProduct extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String cname = (String) request.getSession().getAttribute("username");
-        int pid = Integer.parseInt(request.getParameter("productid"));
-        CartBean cart = new CartBean(cname, pid, 0);
-        CartDAO cartDAO = new CartDAO();
-        int result = cartDAO.deleteProduct(cart);
-        String msg = "Error happens when delete pid" + pid + "into the cart. Please try again.";
-        if(result != -1)
-            msg = "Seccessfully";
+        HttpSession session = request.getSession(false);
+        String msg = "";
+        if(session != null)
+            msg = (String) session.getAttribute("username");
+        else
+            msg = "Invalid Session.";
         request.setAttribute("msg", msg);
         RequestDispatcher rd = getServletContext().getRequestDispatcher("#");
         rd.forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

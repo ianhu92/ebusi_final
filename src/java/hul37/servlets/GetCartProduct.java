@@ -9,6 +9,7 @@ import hul37.beans.CartProductBean;
 import hul37.dbutil.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +36,7 @@ public class GetCartProduct extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String cname = request.getParameter("userid");
+        String cname = (String) request.getSession().getAttribute("username");
         CartDAO cartDAO = new CartDAO();
         CartProductBean[] results =  cartDAO.getCartProduct(cname);
         JSONArray list = new JSONArray();
@@ -49,6 +50,9 @@ public class GetCartProduct extends HttpServlet {
             list.add(cpb);
         }
         String responseStr = list.toJSONString();
+        request.setAttribute("rsp", responseStr);
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("#");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

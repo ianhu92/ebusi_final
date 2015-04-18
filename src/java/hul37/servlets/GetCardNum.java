@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,12 +38,12 @@ public class GetCardNum extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("userid");
+        String cname = (String) request.getSession().getAttribute("username");
         CartDAO cartDAO = new CartDAO();
         CartBean[] cart = cartDAO.getCart(name);
         request.setAttribute("cart", cart);
-        //return a list of product user purchase
-        //TO DO requestDispathcer
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("#");
+        rd.forward(request, response);
         
     }
 

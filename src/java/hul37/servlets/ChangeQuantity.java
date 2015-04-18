@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,7 +34,7 @@ public class ChangeQuantity extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String cname = request.getParameter("userid");
+        String cname = (String) request.getSession().getAttribute("username");
         int pid = Integer.parseInt(request.getParameter("productid"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         CartBean cart = new CartBean(cname, pid, quantity);
@@ -43,7 +44,8 @@ public class ChangeQuantity extends HttpServlet {
         if(result != -1)
             msg = "Seccessfully";
         request.setAttribute("msg", msg);
-        //BACK TO THE CART PAGE
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("#");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
