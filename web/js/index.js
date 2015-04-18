@@ -9,7 +9,6 @@ function getProduct() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var jo = JSON.parse(xmlhttp.responseText);
-            alert(jo);
             var productid;
             var productname;
             var img;

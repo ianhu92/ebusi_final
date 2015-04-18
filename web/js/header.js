@@ -23,8 +23,9 @@ function getSession(){
     var xmlhttp = getXMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+
             username=xmlhttp.responseText;
-            if(username!="Invalid Session."){
+            if(username!="Invalid Session"){
                 document.getElementById("accountName").innerHTML="Hello "+username;
                 document.getElementById("accountName").setAttribute("href","order.html");
             }

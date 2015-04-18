@@ -12,14 +12,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONException;
 import org.json.JSONObject;
+
 /**
  *
  * @author yanglijia
@@ -27,37 +26,37 @@ import org.json.JSONObject;
 @WebServlet(name = "GetProductServlet", urlPatterns = {"/GetProductServlet"})
 public class GetProductServlet extends HttpServlet {
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String type=request.getParameter("category");
-        String sql="Select product.pid,pname,price,img,stock from product,inventory where product.pid=inventory.pid  and type='"+type+"'";
-        PrintWriter out=response.getWriter();
-        DBbean db=new DBbean();
+        String type = request.getParameter("category");
+        String sql = "Select product.pid,pname,price,img,stock from product,inventory where product.pid=inventory.pid  and type='" + type + "'";
+        PrintWriter out = response.getWriter();
+        DBbean db = new DBbean();
         try {
-            ResultSet rs=db.query(sql);
-            JSONObject productlist=new JSONObject();
-            while (rs.next())
-            {
-                JSONObject product=new JSONObject();
-                product.append("productid", rs.getString(1));
-                product.append("productname", rs.getString(2));
-                product.append("price", rs.getString(3));
-                product.append("inventory", rs.getString(5));
-                product.append("img", rs.getString(4));
-                productlist.put("product",product);
+            ResultSet rs = db.query(sql);
+            JSONObject productlist = new JSONObject();
+            while (rs.next()) {
+                JSONObject product = new JSONObject();
+                String productid=rs.getString("pid");
+                String productname=rs.getString("pname");
+                String price=rs.getString("price");
+                String img=rs.getString("img");
+                String inventory=rs.getString("stock");
+                product.append("productid", productid);
+                product.append("productname", productname);
+                product.append("price", price);
+                product.append("img", img);
+                product.append("inventory", inventory);
+                productlist.append("product", product);
             }
-            String productString=productlist.toString();
+            String productString = productlist.toString();
             out.print(productString);
-            
-            
+
         } catch (Exception ex) {
             Logger.getLogger(GetProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }
 
-    
+    }
 
 }
