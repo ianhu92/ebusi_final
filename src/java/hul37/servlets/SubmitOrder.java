@@ -47,23 +47,19 @@ public class SubmitOrder extends HttpServlet {
             String street = request.getParameter("street");
             String state = request.getParameter("state");
             String zip = request.getParameter("zip");
-            String shippingaddr = firstname + " " + lastname + ", " + street;
+            String shippingaddr = firstname + " " + lastname + ", " + street + ", " + state + ", " + zip;
             CartDAO cartDAO = new CartDAO();
             OrderDAO orderDAO = new OrderDAO();
-            CartBean[] list = cartDAO.getCart("john");
+            CartBean[] list = cartDAO.getCart(cname);
             GetIndex a = new GetIndex();
-            int ordernum = a.getOrderNum();
-            int oid = a.getOrderNum();
-            OrderDAO.setMax_oid(oid);
-            OrderDAO.setMax_ordernum(ordernum);
+            int ordernum = a.getOrderNum() + 1;
             for(CartBean aPid : list) {
                 int pid = aPid.getPid();
                 int quantity = aPid.getQuantity();
                 cartDAO.deleteProduct(aPid);
                 OrderBean order = new OrderBean(cname, pid, quantity, shippingaddr, zip, state, ordernum);
-                orderDAO.submitOrder(order);
+                orderDAO.submitOrder(order, ordernum);
             }
-            OrderDAO.setMax_ordernum(ordernum + 1);
         }
         out.write(msg);
     }

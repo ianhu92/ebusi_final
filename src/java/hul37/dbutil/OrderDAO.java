@@ -32,14 +32,11 @@ public class OrderDAO {
     private final String GET_ORDER = "SELECT distinct * FROM `order`, `ordernum`\n" +
 "WHERE (order.oid = ordernum.oid) AND cname = ?";
     
-    private static int max_ordernum;
-    private static int max_oid;
-
     public OrderDAO() {
         con = DBConnection.getConnection();
     }
     
-    public int submitOrder(OrderBean order) {
+    public int submitOrder(OrderBean order, int ordernum) {
         int result = -1;
         try {
             pstmt = con.prepareStatement(SUBMIT_ORDER);
@@ -51,8 +48,7 @@ public class OrderDAO {
             pstmt.setString(6, order.getStatus());
             pstmt.setTimestamp(7, new Timestamp(order.getDatetime().getTime()));
             result = pstmt.executeUpdate();
-            insertOrdernum(max_ordernum);
-            max_oid++;
+            insertOrdernum(ordernum);
         } catch (SQLException ex) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -86,37 +82,21 @@ public class OrderDAO {
     }
     
     private void insertOrdernum(int ordernum) {
+        GetIndex index = new GetIndex();
+        int oid = index.getOid();
         try {
             pstmt = con.prepareStatement(SUBMIT_ORDERNUM);
             pstmt.setInt(1, ordernum);
-            pstmt.setInt(2, max_oid);
+            pstmt.setInt(2, oid);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }     
     }
-
-    public static void setMax_ordernum(int max_ordernum) {
-        OrderDAO.max_ordernum = max_ordernum;
-    }
-
-    public static void setMax_oid(int max_oid) {
-        OrderDAO.max_oid = max_oid;
-    }
-
-    public static int getMax_ordernum() {
-        return max_ordernum;
-    }
-
-    public static int getMax_oid() {
-        return max_oid;
-    }
-
     
     @Override
     protected void finalize() throws Throwable {
         DBConnection.close(rs, pstmt, con);
     }
-    
-    
+
 }
