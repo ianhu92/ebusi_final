@@ -30,6 +30,11 @@ public class GetProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String type = request.getParameter("category");
+        
+        if(type.indexOf("'")>=0){
+            String[] temp=type.split("'");
+            type=temp[0]+"''"+temp[1];
+        }
         String sql = "Select product.pid,pname,price,img,stock from product,inventory where product.pid=inventory.pid  and type='" + type + "'";
         PrintWriter out = response.getWriter();
         DBbean db = new DBbean();
