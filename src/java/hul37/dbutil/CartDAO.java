@@ -90,7 +90,7 @@ public class CartDAO {
         al.toArray(cart);
         return cart;
     }
-    
+
     public CartProductBean[] getCartProduct(String name) {
         ArrayList<CartProductBean> al = new ArrayList<>();
         try {
