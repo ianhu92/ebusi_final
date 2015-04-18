@@ -28,13 +28,19 @@ public class OrderDAO {
     private ResultSet rs;
     private final String SUBMIT_ORDER = "INSERT INTO flower_store.order (cname, pid, quantity, shippingaddr, card, status, datetime)"
             + " VALUES (?, ?, ?, ?, ?, ?, ?);";
-    private final String GET_ORDER = "SELECT * FROM `order` WHERE cname = ?";
+    private final String SUBMIT_ORDERNUM = "INSERT INTO flower_store.ordernum (ordernum, oid) VALUES (?, ?);";    
+    private final String GET_ORDER = "SELECT distinct * FROM `order`, `ordernum`\n" +
+"WHERE (order.oid = ordernum.oid) AND cname = ?";
+    
+    private static int max_ordernum;
+    private static int max_oid;
 
     public OrderDAO() {
         con = DBConnection.getConnection();
     }
     
     public int submitOrder(OrderBean order) {
+        int result = -1;
         try {
             pstmt = con.prepareStatement(SUBMIT_ORDER);
             pstmt.setString(1, order.getCname());
@@ -44,11 +50,13 @@ public class OrderDAO {
             pstmt.setString(5, order.getCard());
             pstmt.setString(6, order.getStatus());
             pstmt.setTimestamp(7, new Timestamp(order.getDatetime().getTime()));
-            return  pstmt.executeUpdate();
+            result = pstmt.executeUpdate();
+            insertOrdernum(max_ordernum);
+            max_oid++;
         } catch (SQLException ex) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return -1;
+        return result;
     }
     
     public OrderBean[] getOrder(String name) {
@@ -65,7 +73,8 @@ public class OrderDAO {
                 String card = rs.getString("card");
                 String status = rs.getString("status");
                 Date datetime = rs.getDate("datetime");
-                OrderBean order = new OrderBean(cname, pid, quantity, shippingaddr, card, status, datetime);
+                int ordernum = rs.getInt("ordernum");
+                OrderBean order = new OrderBean(cname, pid, quantity, shippingaddr, card, status, datetime, ordernum);
                 al.add(order);
             }
         } catch (SQLException ex) {
@@ -75,6 +84,34 @@ public class OrderDAO {
         al.toArray(orders);
         return orders;
     }
+    
+    private void insertOrdernum(int ordernum) {
+        try {
+            pstmt = con.prepareStatement(SUBMIT_ORDERNUM);
+            pstmt.setInt(1, ordernum);
+            pstmt.setInt(2, max_oid);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    }
+
+    public static void setMax_ordernum(int max_ordernum) {
+        OrderDAO.max_ordernum = max_ordernum;
+    }
+
+    public static void setMax_oid(int max_oid) {
+        OrderDAO.max_oid = max_oid;
+    }
+
+    public static int getMax_ordernum() {
+        return max_ordernum;
+    }
+
+    public static int getMax_oid() {
+        return max_oid;
+    }
+
     
     @Override
     protected void finalize() throws Throwable {

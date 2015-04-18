@@ -7,18 +7,14 @@ package hul37.servlets;
 
 import hul37.beans.CartBean;
 import hul37.dbutil.CartDAO;
-import hul37.dbutil.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,12 +34,16 @@ public class GetCardNum extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String cname = (String) request.getSession().getAttribute("username");
-        CartDAO cartDAO = new CartDAO();
-        CartBean[] cart = cartDAO.getCart(cname);
         PrintWriter out = response.getWriter();
+        String msg = "Invalid Session";
+        HttpSession session = request.getSession(false);
+        CartBean[] cart = new CartBean[0];
+        if(session != null) {
+            String cname = (String) session.getAttribute("username");
+            CartDAO cartDAO = new CartDAO();
+            cart = cartDAO.getCart(cname);
+        }
         out.write(cart.length);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

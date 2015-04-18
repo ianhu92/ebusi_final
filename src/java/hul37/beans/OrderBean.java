@@ -14,6 +14,7 @@ import java.sql.Date;
  */
 public class OrderBean implements Serializable {
     
+    private int ordernum;
     private String cname;
     private int pid;
     private int quantity;
@@ -26,7 +27,7 @@ public class OrderBean implements Serializable {
     }
     
 
-    public OrderBean(String cname, int pid, int quantity, String shippingaddr, String card, String status) {
+    public OrderBean(String cname, int pid, int quantity, String shippingaddr, String card, String status, int ordernum) {
         this.cname = cname;
         this.pid = pid;
         this.quantity = quantity;
@@ -34,9 +35,11 @@ public class OrderBean implements Serializable {
         this.card = card;
         this.status = status;
         this.datetime = new Date(System.currentTimeMillis());
+        this.ordernum = ordernum;
     }
 
-    public OrderBean(String cname, int pid, int quantity, String shippingaddr, String card, String status, Date datetime) {
+    public OrderBean(String cname, int pid, int quantity, String shippingaddr, String card, String status, Date datetime, int ordernum) {
+        this.ordernum = ordernum;
         this.cname = cname;
         this.pid = pid;
         this.quantity = quantity;
@@ -45,7 +48,15 @@ public class OrderBean implements Serializable {
         this.status = status;
         this.datetime = datetime;
     }
-    
+
+    public int getOrdernum() {
+        return ordernum;
+    }
+
+    public void setOrdernum(int ordernum) {
+        this.ordernum = ordernum;
+    }
+
     public String getCname() {
         return cname;
     }

@@ -12,9 +12,9 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,16 +34,20 @@ public class ChangeQuantity extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String cname = (String) request.getSession().getAttribute("username");
-        int pid = Integer.parseInt(request.getParameter("productid"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        CartBean cart = new CartBean(cname, pid, quantity);
-        CartDAO cartDAO = new CartDAO();
-        int result = cartDAO.updateProduct(cart);
-        String msg = "Error happens when update pid" + pid + "'s quanitity. Please try again.";
-        if(result != -1)
-            msg = "Seccessfully";
         PrintWriter out = response.getWriter();
+        String msg = "Invalid Session";
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            String cname = (String) session.getAttribute("username");
+            int pid = Integer.parseInt(request.getParameter("productid"));
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            CartBean cart = new CartBean(cname, pid, quantity);
+            CartDAO cartDAO = new CartDAO();
+            int result = cartDAO.updateProduct(cart);
+            msg = "Error happens when update pid" + pid + "'s quanitity. Please try again.";
+            if(result != -1)
+                msg = "Seccessfully";
+        }
         out.write(msg);
     }
 

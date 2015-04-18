@@ -9,12 +9,12 @@ import hul37.beans.CartProductBean;
 import hul37.dbutil.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -36,22 +36,26 @@ public class GetCartProduct extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String cname = (String) request.getSession().getAttribute("username");
-        CartDAO cartDAO = new CartDAO();
-        CartProductBean[] results =  cartDAO.getCartProduct(cname);
-        JSONArray list = new JSONArray();
-        for(CartProductBean cpb : results) {
-            JSONObject product = new JSONObject();
-            product.put("productid", cpb.getPid());
-            product.put("productname", cpb.getPname());
-            product.put("price", cpb.getPrice());
-            product.put("inventory", cpb.getStock());
-            product.put("quantity", cpb.getQuantity());
-            list.add(cpb);
-        }
-        String responseStr = list.toJSONString();
         PrintWriter out = response.getWriter();
-        out.write(responseStr);
+        String msg = "Invalid Session";
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            String cname = (String) session.getAttribute("username");
+            CartDAO cartDAO = new CartDAO();
+            CartProductBean[] results =  cartDAO.getCartProduct(cname);
+            JSONArray list = new JSONArray();
+            for(CartProductBean cpb : results) {
+                JSONObject product = new JSONObject();
+                product.put("productid", cpb.getPid());
+                product.put("productname", cpb.getPname());
+                product.put("price", cpb.getPrice());
+                product.put("inventory", cpb.getStock());
+                product.put("quantity", cpb.getQuantity());
+                list.add(cpb);
+            }
+            msg = list.toJSONString();
+        }
+        out.write(msg);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

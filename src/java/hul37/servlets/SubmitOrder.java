@@ -5,6 +5,11 @@
  */
 package hul37.servlets;
 
+import hul37.beans.CartBean;
+import hul37.beans.OrderBean;
+import hul37.dbutil.CartDAO;
+import hul37.dbutil.GetIndex;
+import hul37.dbutil.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author violetliu
  */
-@WebServlet(name = "GetSession", urlPatterns = {"/GetSession"})
-public class GetSession extends HttpServlet {
+@WebServlet(name = "SubmitOrder", urlPatterns = {"/SubmitOrder"})
+public class SubmitOrder extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,8 +40,31 @@ public class GetSession extends HttpServlet {
         PrintWriter out = response.getWriter();
         String msg = "Invalid Session";
         HttpSession session = request.getSession(false);
-        if(session != null)
-            msg = (String) session.getAttribute("username");
+        if(session != null) {
+            String cname = (String) session.getAttribute("username");
+            String firstname = request.getParameter("firstname");
+            String lastname = request.getParameter("lastname");
+            String street = request.getParameter("street");
+            String state = request.getParameter("state");
+            String zip = request.getParameter("zip");
+            String shippingaddr = firstname + " " + lastname + ", " + street;
+            CartDAO cartDAO = new CartDAO();
+            OrderDAO orderDAO = new OrderDAO();
+            CartBean[] list = cartDAO.getCart("john");
+            GetIndex a = new GetIndex();
+            int ordernum = a.getOrderNum();
+            int oid = a.getOrderNum();
+            OrderDAO.setMax_oid(oid);
+            OrderDAO.setMax_ordernum(ordernum);
+            for(CartBean aPid : list) {
+                int pid = aPid.getPid();
+                int quantity = aPid.getQuantity();
+                cartDAO.deleteProduct(aPid);
+                OrderBean order = new OrderBean(cname, pid, quantity, shippingaddr, zip, state, ordernum);
+                orderDAO.submitOrder(order);
+            }
+            OrderDAO.setMax_ordernum(ordernum + 1);
+        }
         out.write(msg);
     }
 
