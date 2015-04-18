@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url=" ";
+        String url="index.html";
         String id=request.getParameter("username");
         String pwd=request.getParameter("password");
         DBbean db=new DBbean();

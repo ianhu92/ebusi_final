@@ -16,7 +16,7 @@ function getCartNum(){
             document.getElementById("cartNum").innerHTML=xmlhttp.responseText;
         }
     };
-    xmlhttp.open("Get", "GetCartNum", true);
+    xmlhttp.open("Post", "GetCartNum", false);
     xmlhttp.send();
 }
 function getSession(){
@@ -30,6 +30,6 @@ function getSession(){
             }
         }
     };
-    xmlhttp.open("Get", "GetSession", true);
+    xmlhttp.open("Post", "GetSession", true);
     xmlhttp.send();
 }

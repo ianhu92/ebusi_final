@@ -18,9 +18,9 @@ import java.sql.Statement;
 public class DBbean {
     
  private String DBDriver="com.mysql.jdbc.Driver";
-    private String url="jdbc:mysql://localhost:8889/flower_store?zeroDateTimeBehavior=convertToNull";
-    private String uid="root";
-    private String pwd="root";
+    private String url="jdbc:mysql://localhost:3306/flower_store?zeroDateTimeBehavior=convertToNull";
+    private String uid="flower";
+    private String pwd="flower";
     public Connection conn=null;
     public ResultSet rs=null;
     

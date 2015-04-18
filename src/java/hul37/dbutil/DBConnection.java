@@ -17,9 +17,9 @@ import java.sql.SQLException;
  */
 public class DBConnection {
     private static final String DBDRIVER = "com.mysql.jdbc.Driver";
-    private static final String DBURL = "jdbc:mysql://localhost:8889/flower_store";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String DBURL = "jdbc:mysql://localhost:3306/flower_store?zeroDateTimeBehavior=convertToNull";
+    private static final String USERNAME = "flower";
+    private static final String PASSWORD = "flower";
     
     public static Connection getConnection() {
         Connection con = null;

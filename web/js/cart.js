@@ -148,7 +148,7 @@ function getCartProduct() {
             document.getElementById("subtotalNum").innerHTML = subtotal.toFixed(2);
         }
     };
-    xmlhttp.open("Get", "GetCartProduct", true);
+    xmlhttp.open("Post", "GetCartProduct", true);
     xmlhttp.send();
 }
 function deleteProduct(a) {
