@@ -1,33 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="35be76e0-56b2-43f6-940d-9b2df9831602" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\CDL.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\Cookie.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\CookieList.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\HTTP.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\HTTPTokener.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\JSONArray.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\JSONException.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\JSONObject.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\JSONString.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\JSONStringer.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\JSONTokener.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\JSONWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\Test.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\XML.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Workspace\Workspace_GitHub\ebusi_final\src\java\org\json\XMLTokener.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/java/Servlet/GetProductServlet.java" afterPath="$PROJECT_DIR$/../src/java/Servlet/GetProductServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Request and response.txt" afterPath="$PROJECT_DIR$/../Request and response.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nbproject/build-impl.xml" afterPath="$PROJECT_DIR$/../nbproject/build-impl.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nbproject/genfiles.properties" afterPath="$PROJECT_DIR$/../nbproject/genfiles.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/header.js" afterPath="$PROJECT_DIR$/js/header.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nbproject/private/private.xml" afterPath="$PROJECT_DIR$/../nbproject/private/private.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nbproject/project.properties" afterPath="$PROJECT_DIR$/../nbproject/project.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nbproject/project.xml" afterPath="$PROJECT_DIR$/../nbproject/project.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="35be76e0-56b2-43f6-940d-9b2df9831602" name="Default" comment="" />
     <ignored path="web.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,8 +24,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6409336">
-              <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.33393177">
+              <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -342,7 +316,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14657739" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -809,8 +783,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6409336">
-          <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.33393177">
+          <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
           <folding />
         </state>
       </provider>
