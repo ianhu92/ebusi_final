@@ -30,7 +30,7 @@ public class ChangePaswServlet extends HttpServlet {
         String username =request.getParameter("username");
         String newpassword=request.getParameter("new");
         DBbean db=new DBbean();
-        String sql="update customer set password='"+newpassword+"' where username='"+username+"'";
+        String sql="update customer set password='"+newpassword+"' where cname='"+username+"'";
         try {
             db.update(sql);
             RequestDispatcher ds=request.getRequestDispatcher(url);
