@@ -34,7 +34,7 @@
     </div>
 </div>
 <div id="body">
-    <form name="signup" id="signup" action="Signup">
+    <form name="signup" id="signup" action="RegisterServlet" method="post" onsubmit="return signup()">
         <div>
             <span>Username*&nbsp;</span>
             <input type="text" name="username"/>
@@ -49,31 +49,35 @@
         </div>
         <div>
             <span>Email*&nbsp;</span>
-            <input type="text" name="password"/>
+            <input type="text" name="email"/>
         </div>
         <div>
             <span>Firstname&nbsp;</span>
-            <input type="text" name="password"/>
+            <input type="text" name="firstname"/>
         </div>
         <div>
             <span>Lastname&nbsp;</span>
-            <input type="text" name="password"/>
+            <input type="text" name="lastname"/>
         </div>
         <div>
             <span>Street&nbsp;</span>
-            <input type="text" name="password"/>
+            <input type="text" name="street"/>
         </div>
         <div>
             <span>City&nbsp;</span>
-            <input type="text" name="password"/>
+            <input type="text" name="city"/>
         </div>
         <div>
             <span>State&nbsp;</span>
-            <input type="text" name="password"/>
+            <input type="text" name="state"/>
+        </div>
+        <div>
+            <span>Zip code&nbsp;</span>
+            <input type="text" name="zip"/>
         </div>
         <div>
             <span>Phone&nbsp;</span>
-            <input type="text" name="password"/>
+            <input type="text" name="phone"/>
         </div>
         <div>
             <input type="submit" value="Sign Up"/>

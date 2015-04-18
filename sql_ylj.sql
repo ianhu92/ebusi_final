@@ -13,7 +13,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `flower_store`
 --
-
+create database if not exists flower_store;
+use flower_store;
 -- --------------------------------------------------------
 
 --
@@ -99,7 +100,8 @@ CREATE TABLE `order` (
   `quantity` int(11) NOT NULL,
   `shippingaddr` varchar(64) NOT NULL,
   `card` varchar(128) NOT NULL,
-  `status` varchar(20) NOT NULL
+  `status` varchar(20) NOT NULL,
+  `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -135,21 +137,6 @@ INSERT INTO `product` (`pid`, `pname`, `type`, `price`, `des`, `img`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `store`
---
-
-CREATE TABLE `store` (
-  `sname` varchar(20) NOT NULL,
-  `lon` double NOT NULL,
-  `lat` double NOT NULL,
-  `saddr` varchar(64) NOT NULL,
-  `phone` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Indexes for dumped tables
---
 
 --
 -- Indexes for table `product`

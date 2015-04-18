@@ -19,7 +19,7 @@
     </div>
     <div id="accountLine">
         <ul id="account">
-            <li class="accountLi"><a class="headerLink" href="signin.html">Sign In</a></li>
+            <li class="accountLi"><a id="accountName" class="headerLink" href="signin.html">Sign In</a></li>
             <li class="accountLi"><a class="headerLink" href="cart.html">Cart&nbsp;<span id="cartNum">0</span></a></li>
         </ul>
     </div>
@@ -33,132 +33,89 @@
         </ul>
     </div>
 </div>
-<div id="body">
-    <div id="leftNav">
-        <ul class="leftNavUl">
-            <li class="leftLi"><a href="order.html">Orders</a></li>
-            <li class="leftLi"><a href="setting.html">Settings</a></li>
-        </ul>
-    </div>
+<form id="body">
     <div id="main">
-        <h2>Orders</h2>
-        <ul id="orderUl">
-            <li class="orderLi">
-                <div class="orderInfo">
-                    <div>
-                        <p>Order Placed</p>
-                        <p class="orderDate">April 15,2015</p>
-                    </div>
-                    <div>
-                        <p>Total</p>
-                        <p class="orderDate">April 15,2015</p>
-                    </div>
-                    <div>
-                        <p>Ship to</p>
-                        <p class="orderDate">April 15,2015</p>
-                    </div>
-                    <div>
-                        <a>view order detail</a>
-                    </div>
-                </div>
-                <ul class="productList">
-                    <li class="product">
-                        <div class="thumbnailDiv">
-                            <img class="thumbnail" alt="product2" src="img/iphone6.jpg">
-                        </div>
-                        <div class="productDetail">
-                            <p>product2</p>
-                        </div>
-                        <div class="price">
-                            <p>Price</p>
+        <div id="cartTitle">
+            <h2>Place Order</h2>
+        </div>
+        <ul id="productList">
 
-                            <p class="priceNum">$299.99</p>
-                        </div>
-                        <div class="quantity">
-                            <p>Quantity</p>
-
-                            <p class="quantityNum">2</p>
-                        </div>
-                    </li>
-                    <li class="product">
-                        <div class="thumbnailDiv">
-                            <img class="thumbnail" alt="product2" src="img/iphone6.jpg">
-                        </div>
-                        <div class="productDetail">
-                            <p>product2</p>
-                        </div>
-                        <div class="price">
-                            <p>Price</p>
-
-                            <p class="priceNum">$299.99</p>
-                        </div>
-                        <div class="quantity">
-                            <p>Quantity</p>
-
-                            <p class="quantityNum">2</p>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-            <li class="orderLi">
-                <div class="orderInfo">
-                    <div>
-                        <p>Order Placed</p>
-                        <p class="orderDate">April 15,2015</p>
-                    </div>
-                    <div>
-                        <p>Total</p>
-                        <p class="orderDate">April 15,2015</p>
-                    </div>
-                    <div>
-                        <p>Ship to</p>
-                        <p class="orderDate">April 15,2015</p>
-                    </div>
-                    <div>
-                        <a>view order detail</a>
-                    </div>
-                </div>
-                <ul class="productList">
-                    <li class="product">
-                        <div class="thumbnailDiv">
-                            <img class="thumbnail" alt="product2" src="img/iphone6.jpg">
-                        </div>
-                        <div class="productDetail">
-                            <p>product2</p>
-                        </div>
-                        <div class="price">
-                            <p>Price</p>
-
-                            <p class="priceNum">$299.99</p>
-                        </div>
-                        <div class="quantity">
-                            <p>Quantity</p>
-
-                            <p class="quantityNum">2</p>
-                        </div>
-                    </li>
-                    <li class="product">
-                        <div class="thumbnailDiv">
-                            <img class="thumbnail" alt="product2" src="img/iphone6.jpg">
-                        </div>
-                        <div class="productDetail">
-                            <p>product2</p>
-                        </div>
-                        <div class="price">
-                            <p>Price</p>
-
-                            <p class="priceNum">$299.99</p>
-                        </div>
-                        <div class="quantity">
-                            <p>Quantity</p>
-
-                            <p class="quantityNum">2</p>
-                        </div>
-                    </li>
-                </ul>
-            </li>
         </ul>
+        <div id="placeOrder">
+            <div id="shippingAddress" class="placeOrderPart">
+                <h3>Shipping Address</h3>
+
+                <div>
+                    <span>Firstname&nbsp;</span>
+                    <input type="text" name="firstname"/>
+                </div>
+                <div>
+                    <span>Lastname&nbsp;</span>
+                    <input type="text" name="lastname"/>
+                </div>
+                <div>
+                    <span>Street&nbsp;</span>
+                    <input type="text" name="street"/>
+                </div>
+                <div>
+                    <span>City&nbsp;</span>
+                    <input type="text" name="city"/>
+                </div>
+                <div>
+                    <span>State&nbsp;</span>
+                    <input type="text" name="state"/>
+                </div>
+                <div>
+                    <span>Zip code&nbsp;</span>
+                    <input type="text" name="zip"/>
+                </div>
+                <div>
+                    <span>Phone&nbsp;</span>
+                    <input type="text" name="phone"/>
+                </div>
+            </div>
+            <div id="shippingDate" class="placeOrderPart">
+                <h3 onclick="initialYearAndDay()">Shipping Date</h3>
+
+                <div>
+                    <span>Year&nbsp;</span>
+                    <select id="year" name="year" onchange="changeMonthOrYear(this);"></select>
+                </div>
+                <div>
+                    <span>Month&nbsp;</span>
+                    <select id="month" name="month" onchange="changeMonthOrYear(this);">
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
+                <div>
+                    <span>Day&nbsp;</span>
+                    <select id="day" name="day"></select>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+    <div id="right">
+        <div id="checkout">
+            <div id="subtotal">
+                <h3>Subtotal: $<span id="subtotalNum">0</span></h3>
+            </div>
+            <div id="checkoutBtnDiv">
+                <a id="checkoutBtn" onclick="placeOrder()">Check Out</a>
+            </div>
+        </div>
+    </div>
+</form>
 </body>
 </html>

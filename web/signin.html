@@ -19,7 +19,7 @@
     </div>
     <div id="accountLine">
         <ul id="account">
-            <li class="accountLi"><a class="headerLink" href="signin.html">Sign In</a></li>
+            <li class="accountLi"><a id="accountName"  class="headerLink" href="signin.html">Sign In</a></li>
             <li class="accountLi"><a class="headerLink" href="cart.html">Cart&nbsp;<span id="cartNum">0</span></a></li>
         </ul>
     </div>
@@ -34,7 +34,7 @@
     </div>
 </div>
 <div id="body">
-    <form name="signin" id="signin" action="Signin">
+    <form name="signin" id="signin" action="LoginServlet" method="post">
         <div>
             <span>Username&nbsp;</span>
             <input type="text" name="username"/>
