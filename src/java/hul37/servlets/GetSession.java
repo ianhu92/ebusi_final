@@ -39,9 +39,8 @@ public class GetSession extends HttpServlet {
             msg = (String) session.getAttribute("username");
         else
             msg = "Invalid Session.";
-        request.setAttribute("msg", msg);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("#");
-        rd.forward(request, response);
+        PrintWriter out = response.getWriter();
+        out.write(msg);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

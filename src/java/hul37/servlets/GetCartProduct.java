@@ -50,9 +50,8 @@ public class GetCartProduct extends HttpServlet {
             list.add(cpb);
         }
         String responseStr = list.toJSONString();
-        request.setAttribute("rsp", responseStr);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("#");
-        rd.forward(request, response);
+        PrintWriter out = response.getWriter();
+        out.write(responseStr);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

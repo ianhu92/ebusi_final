@@ -42,9 +42,8 @@ public class DeleteProduct extends HttpServlet {
         String msg = "Error happens when delete pid" + pid + "into the cart. Please try again.";
         if(result != -1)
             msg = "Seccessfully";
-        request.setAttribute("msg", msg);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("#");
-        rd.forward(request, response);
+        PrintWriter out = response.getWriter();
+        out.write(msg);
         
     }
 

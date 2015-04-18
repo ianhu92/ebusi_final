@@ -44,8 +44,8 @@ public class AddToCart extends HttpServlet {
         if(result != -1)
             msg = "Seccessfully";
         request.setAttribute("msg", msg);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("#");
-        rd.forward(request, response);
+        PrintWriter out = response.getWriter();
+        out.write(msg);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -40,10 +40,9 @@ public class GetCardNum extends HttpServlet {
             throws ServletException, IOException {
         String cname = (String) request.getSession().getAttribute("username");
         CartDAO cartDAO = new CartDAO();
-        CartBean[] cart = cartDAO.getCart(name);
-        request.setAttribute("cart", cart);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("#");
-        rd.forward(request, response);
+        CartBean[] cart = cartDAO.getCart(cname);
+        PrintWriter out = response.getWriter();
+        out.write(cart.length);
         
     }
 
