@@ -13,8 +13,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `flower_store`
 --
-create database if not exists flower_store;
-user flower_store;
+create database if not exists `flower_store`;
+use `flower_store`;
 -- --------------------------------------------------------
 
 --
