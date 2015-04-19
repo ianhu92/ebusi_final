@@ -8,7 +8,6 @@ package Servlet;
 import JavaBean.DBbean;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -16,15 +15,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONObject;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author yanglijia
  */
-@WebServlet(name = "CustomerServlet", urlPatterns = {"/CustomerServlet"})
-public class CustomerServlet extends HttpServlet {
+@WebServlet(name = "UpdateServlet", urlPatterns = {"/UpdateServlet"})
+public class UpdateServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,34 +35,57 @@ public class CustomerServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession(false);
-            if(session != null) {
-                String username = (String) session.getAttribute("username");
-                DBbean db = new DBbean();
-                String sql = "select firstname,lastname,address,phone number from customer where cname='" + username + "'";
+        PrintWriter out = response.getWriter();
+        
+        HttpSession session = request.getSession();
+        if (session != null) {
+            
+            String username = (String) session.getAttribute("username");
+            String address = request.getParameter("address");
+            String firstname = request.getParameter("firstname");
+            String lastname = request.getParameter("lastname");
+            String email = request.getParameter("email");
+            DBbean db = new DBbean();
+            if (!username.equals("")) {
+                String sql = "update customer set addr='" + address + "'where cname='" + username + "'";
                 try {
-                    ResultSet rs = db.query(sql);
-                    JSONObject productlist = new JSONObject();
-                    if (rs.next()) {
-                        JSONObject product = new JSONObject();
-                        product.append("firstname", rs.getString("firstname"));
-                        product.append("lastname", rs.getString("lastname"));
-                        product.append("address", rs.getString("address"));
-                        product.append("phonenumber", rs.getString("phonenumber"));
-                        productlist.put("product", product);
-
-                        out.print(productlist.toString());
-                    } else {
-                        out.print("has no such userid");
-                    }
+                    db.update(sql);
+                    
                 } catch (Exception ex) {
-                    Logger.getLogger(CustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else
-                out.print("Inalid Sesseion.");
+                
+            }
+            if (!address.equals("")) {
+                String sql = "update customer set firstname='" + firstname + "'where cname='" + username + "'";
+                try {
+                    db.update(sql);
+                } catch (Exception ex) {
+                    Logger.getLogger(UpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (!lastname.equals("")) {
+                String sql = "update customer set lastname='" + lastname + "'where cname='" + username + "'";
+                try {
+                    db.update(sql);
+                } catch (Exception ex) {
+                    Logger.getLogger(UpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+            if (!email.equals("")) {
+                String sql = "update customer set Email='" + email + "'where cname='" + username + "'";
+                try {
+                    db.update(sql);
+                } catch (Exception ex) {
+                    Logger.getLogger(UpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            out.print("update successfully");
+        } else {
+            out.print("Invalid Session");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
