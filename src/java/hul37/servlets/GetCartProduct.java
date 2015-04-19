@@ -52,6 +52,7 @@ public class GetCartProduct extends HttpServlet {
                     product.append("price", cpb.getPrice());
                     product.append("inventory", cpb.getStock());
                     product.append("quantity", cpb.getQuantity());
+                    product.append("img", cpb.getImg());
                     list.append("product", product);
                 }
             } catch (Exception e) {

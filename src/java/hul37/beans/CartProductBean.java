@@ -18,6 +18,7 @@ public class CartProductBean implements Serializable{
     private double price;
     private int stock;
     private int quantity;
+    private String img;
 
     public int getPid() {
         return pid;
@@ -59,15 +60,24 @@ public class CartProductBean implements Serializable{
         this.quantity = quantity;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+    
     public CartProductBean() {
     }
 
-    public CartProductBean(int pid, String pname, double price, int stock, int quantity) {
+    public CartProductBean(int pid, String pname, double price, int stock, int quantity, String img) {
         this.pid = pid;
         this.pname = pname;
         this.price = price;
         this.stock = stock;
         this.quantity = quantity;
+        this.img = img;
     }
-    
+
 }

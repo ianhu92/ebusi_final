@@ -26,7 +26,7 @@ public class CartDAO {
     private final String INSERT = "INSERT INTO flower_store.cart (cname, pid, quantity) VALUES (?, ?, ?);";
     private final String UPDATE = "UPDATE flower_store.cart SET quantity = ? WHERE cname = ? AND pid = ?";
     private final String GET_CART = "SELECT * FROM flower_store.cart WHERE cname = ?";
-    private final String GET_CART_PRODUCT = "SELECT p.pid pid, pname, price, stock, quantity FROM flower_store.cart c, flower_store.product p, flower_store.inventory i WHERE c.cname = ? AND c.pid = p.pid AND c.pid = i.pid ";
+    private final String GET_CART_PRODUCT = "SELECT p.pid pid, pname, price, stock, quantity, img FROM flower_store.cart c, flower_store.product p, flower_store.inventory i WHERE c.cname = ? AND c.pid = p.pid AND c.pid = i.pid ";
     private final String DELETE = "DELETE FROM flower_store.cart WHERE cname = ? AND pid = ?";
 
     public CartDAO() {
@@ -103,7 +103,8 @@ public class CartDAO {
                 int stock = rs.getInt("stock");
                 double price = rs.getDouble("price");
                 String pname = rs.getString("pname");
-                CartProductBean cartProduct = new CartProductBean(pid, pname, price, stock, quantity);
+                String img = rs.getString("img");
+                CartProductBean cartProduct = new CartProductBean(pid, pname, price, stock, quantity, img);
                 al.add(cartProduct);
             }
         } catch (SQLException ex) {
