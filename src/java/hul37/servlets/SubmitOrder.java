@@ -44,10 +44,10 @@ public class SubmitOrder extends HttpServlet {
             String cname = (String) session.getAttribute("username");
             String firstname = request.getParameter("firstname");
             String lastname = request.getParameter("lastname");
-            String street = request.getParameter("street");
-            String state = request.getParameter("state");
-            String zip = request.getParameter("zip");
-            String shippingaddr = firstname + " " + lastname + ", " + street + ", " + state + ", " + zip;
+            String address = request.getParameter("address");
+//            String state = request.getParameter("state");
+//            String zip = request.getParameter("zip");
+            String shippingaddr = firstname + " " + lastname + ", " + address;
             CartDAO cartDAO = new CartDAO();
             OrderDAO orderDAO = new OrderDAO();
             CartBean[] list = cartDAO.getCart(cname);
@@ -57,7 +57,7 @@ public class SubmitOrder extends HttpServlet {
                 int pid = aPid.getPid();
                 int quantity = aPid.getQuantity();
                 cartDAO.deleteProduct(aPid);
-                OrderBean order = new OrderBean(cname, pid, quantity, shippingaddr, zip, state, ordernum);
+                OrderBean order = new OrderBean(cname, pid, quantity, shippingaddr, "online", "completed", ordernum);
                 orderDAO.submitOrder(order, ordernum);
             }
         }
