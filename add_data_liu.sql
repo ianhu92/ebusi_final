@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Apr 18, 2015 at 05:45 AM
+-- Generation Time: Apr 19, 2015 at 03:06 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.5.14
 
@@ -13,8 +13,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `flower_store`
 --
-create database if not exists `flower_store`;
-use `flower_store`;
+
 -- --------------------------------------------------------
 
 --
@@ -34,54 +33,35 @@ CREATE TABLE `cart` (
 INSERT INTO `cart` (`cname`, `pid`, `quantity`) VALUES
 ('spring', 4, 23),
 ('spring', 4, 23),
-('john', 2, 23),
-('john', 3, 9),
-('john', 5, 8),
 ('Max', 1, 29),
 ('Max', 10, 15),
 ('Max', 10, 10),
 ('Max', 16, 24),
 ('Max', 14, 23),
 ('max', 0, 28),
-('john', 15, 23),
-('john', 8, 18),
 ('Kevin', 3, 13),
-('Nancy', 2, 11),
 ('max', 13, 10),
-('john', 3, 26),
-('john', 15, 9),
 ('Kevin', 10, 27),
-('Nancy', 10, 1),
 ('max', 21, 26),
-('john', 10, 15),
-('john', 13, 21),
 ('Kevin', 12, 14),
-('Nancy', 8, 6),
 ('max', 4, 24),
-('john', 5, 18),
-('john', 2, 9),
 ('Kevin', 10, 4),
-('Nancy', 5, 0),
 ('max', 26, 7),
-('john', 8, 18),
-('john', 17, 1),
 ('Kevin', 6, 28),
-('Nancy', 6, 20),
 ('Spring', 6, 24),
 ('Lucia', 14, 25),
-('Freja', 23, 6),
-('Anna', 9, 20),
 ('Kim', 16, 58),
 ('Spring', 0, 19),
 ('Lucia', 0, 0),
-('Freja', 14, 41),
-('Anna', 14, 37),
 ('Kim', 13, 17),
 ('Spring', 0, 6),
 ('Lucia', 15, 23),
-('Freja', 19, 1),
-('Anna', 2, 23),
-('Kim', 17, 54);
+('Kim', 17, 54),
+('Kim', 3, 5),
+('hhhhhhh', 888, 239),
+('Max', 123, 123),
+('Max', 123, 123),
+('test', 10, 999);
 
 -- --------------------------------------------------------
 
@@ -159,7 +139,7 @@ CREATE TABLE `order` (
   `card` varchar(128) NOT NULL,
   `status` varchar(20) NOT NULL,
   `datetime` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=95 ;
 
 --
 -- Dumping data for table `order`
@@ -210,7 +190,56 @@ INSERT INTO `order` (`oid`, `cname`, `pid`, `quantity`, `shippingaddr`, `card`, 
 (42, 'Wang Xiao', 0, 97, '309 Aikin ave, pittsburgh', 'cash', 'cancelled', '2015-04-17 20:33:48'),
 (43, 'Tim', 25, 5, '629 Main st, pittsburgh', 'cash', 'completed', '2015-04-17 20:33:48'),
 (44, 'Lucia', 8, 49, '948 Negley ave, pittsburgh', 'cash', 'completed', '2015-04-17 20:33:48'),
-(45, 'Wang Xiao', 24, 97, '644 Aikin ave, pittsburgh', 'cash', 'cancelled', '2015-04-17 20:33:48');
+(45, 'Wang Xiao', 24, 97, '644 Aikin ave, pittsburgh', 'cash', 'cancelled', '2015-04-17 20:33:48'),
+(46, 'john', 2, 23, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(47, 'john', 3, 9, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(48, 'john', 5, 8, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(49, 'john', 15, 23, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(50, 'john', 8, 18, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(51, 'john', 3, 26, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(52, 'john', 15, 9, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(53, 'john', 10, 15, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(54, 'john', 13, 21, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(55, 'john', 5, 18, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(56, 'john', 2, 9, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(57, 'john', 8, 18, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(58, 'john', 17, 1, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:09'),
+(59, 'john', 2, 23, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(60, 'john', 3, 9, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(61, 'john', 5, 8, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(62, 'john', 15, 23, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(63, 'john', 8, 18, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(64, 'john', 3, 26, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(65, 'john', 15, 9, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(66, 'john', 10, 15, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(67, 'john', 13, 21, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(68, 'john', 5, 18, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(69, 'john', 2, 9, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(70, 'john', 8, 18, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(71, 'john', 17, 1, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:21:52'),
+(72, 'john', 2, 23, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(73, 'john', 3, 9, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(74, 'john', 5, 8, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(75, 'john', 15, 23, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(76, 'john', 8, 18, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(77, 'john', 3, 26, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(78, 'john', 15, 9, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(79, 'john', 10, 15, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(80, 'john', 13, 21, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(81, 'john', 5, 18, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(82, 'john', 2, 9, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(83, 'john', 8, 18, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(84, 'john', 17, 1, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 13:24:59'),
+(85, 'Nancy', 2, 11, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 18:01:51'),
+(86, 'Nancy', 10, 1, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 18:01:51'),
+(87, 'Nancy', 8, 6, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 18:01:51'),
+(88, 'Nancy', 5, 0, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 18:01:51'),
+(89, 'Nancy', 6, 20, 'sam smith, 708 Mayer st', '90530', 'CA', '2015-04-18 18:01:51'),
+(90, 'Spring', 4, 23, 'sam smith, 708 Mayer st, CA, 90530', '90530', 'CA', '2015-04-18 18:36:34'),
+(91, 'Spring', 4, 23, 'sam smith, 708 Mayer st, CA, 90530', '90530', 'CA', '2015-04-18 18:36:34'),
+(92, 'Spring', 6, 24, 'sam smith, 708 Mayer st, CA, 90530', '90530', 'CA', '2015-04-18 18:36:34'),
+(93, 'Spring', 0, 19, 'sam smith, 708 Mayer st, CA, 90530', '90530', 'CA', '2015-04-18 18:36:34'),
+(94, 'Spring', 0, 6, 'sam smith, 708 Mayer st, CA, 90530', '90530', 'CA', '2015-04-18 18:36:34');
 
 -- --------------------------------------------------------
 
@@ -256,7 +285,56 @@ INSERT INTO `ordernum` (`ordernum`, `oid`) VALUES
 (8, 27),
 (9, 9),
 (9, 24),
-(9, 12);
+(9, 12),
+(10, 46),
+(10, 47),
+(10, 48),
+(10, 49),
+(10, 50),
+(10, 51),
+(10, 52),
+(10, 53),
+(10, 54),
+(10, 55),
+(10, 56),
+(10, 57),
+(10, 58),
+(10, 46),
+(10, 47),
+(10, 48),
+(10, 49),
+(10, 50),
+(10, 51),
+(10, 52),
+(10, 53),
+(10, 54),
+(10, 55),
+(10, 56),
+(10, 57),
+(10, 58),
+(11, 71),
+(11, 72),
+(11, 73),
+(11, 74),
+(11, 75),
+(11, 76),
+(11, 77),
+(11, 78),
+(11, 79),
+(11, 80),
+(11, 81),
+(11, 82),
+(11, 83),
+(11, 11),
+(11, 12),
+(11, 13),
+(11, 14),
+(11, 15),
+(12, 90),
+(12, 91),
+(12, 92),
+(12, 93),
+(12, 94);
 
 -- --------------------------------------------------------
 
@@ -313,7 +391,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
+MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=95;
 --
 -- AUTO_INCREMENT for table `product`
 --
