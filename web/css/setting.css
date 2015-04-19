@@ -66,3 +66,17 @@ form div input[type=submit]{
     height:30px;
     margin:5px 0 0 0;
 }
+form div input[type=text]{
+    width:170px;
+}
+form div input[type=password]{
+    width:170px;
+}
+#addressText{
+    vertical-align: top;
+}
+#address{
+    resize:none;
+    width:170px;
+    height:80px;
+}

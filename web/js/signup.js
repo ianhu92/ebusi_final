@@ -3,6 +3,7 @@
  */
 window.onload= function () {
     getSession();
+    getCartNum();
 }
 function signup(){
     var pass1=document.getElementsByName("password");

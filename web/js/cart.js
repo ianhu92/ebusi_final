@@ -228,3 +228,17 @@ function doChangeQuantity(productid, quantity) {
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("productid=" + productid + "&quantity=" + quantity);
 }
+function proceedToCheckOut(){
+    var xmlhttp = getXMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            if(parseInt(xmlhttp.responseText)>0){
+                window.location="placeOrder.html";
+            }else{
+                alert("Your cart is empty. Please add something to cart before check out.");
+            }
+        }
+    };
+    xmlhttp.open("Post", "GetCardNum", true);
+    xmlhttp.send();
+}

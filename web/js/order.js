@@ -3,6 +3,7 @@
  */
 window.onload = function () {
     getSession();
+    getCartNum();
     //getOrder();
 }
 

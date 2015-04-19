@@ -3,6 +3,7 @@
  */
 window.onload=function(){
     getSession();
+    getCartNum();
 }
 function validatePassword(){
     var old=document.getElementById("oldpassword").value;

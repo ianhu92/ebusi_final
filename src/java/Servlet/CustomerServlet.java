@@ -37,13 +37,13 @@ public class CustomerServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+            response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession(false);
             if(session != null) {
                 String username = (String) session.getAttribute("username");
                 DBbean db = new DBbean();
-                String sql = "select firstname,lastname,address,phone number from customer where cname='" + username + "'";
+                String sql = "select firstname,lastname,addr,phone from customer where cname='" + username + "'";
                 try {
                     ResultSet rs = db.query(sql);
                     JSONObject productlist = new JSONObject();
@@ -51,8 +51,8 @@ public class CustomerServlet extends HttpServlet {
                         JSONObject product = new JSONObject();
                         product.append("firstname", rs.getString("firstname"));
                         product.append("lastname", rs.getString("lastname"));
-                        product.append("address", rs.getString("address"));
-                        product.append("phonenumber", rs.getString("phonenumber"));
+                        product.append("address", rs.getString("addr"));
+                        product.append("phone", rs.getString("phone"));
                         productlist.put("product", product);
 
                         out.print(productlist.toString());
@@ -63,7 +63,7 @@ public class CustomerServlet extends HttpServlet {
                     Logger.getLogger(CustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }else
-                out.print("Inalid Sesseion.");
+                out.print("Invalid Session.");
         }
     }
 

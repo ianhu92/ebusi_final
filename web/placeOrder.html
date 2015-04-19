@@ -37,7 +37,7 @@
 <form id="body">
     <div id="main">
         <div id="cartTitle">
-            <h2>Place Order</h2>
+            <h2 onclick="getCustomerInfo()">Place Order</h2>
         </div>
         <ul id="productList">
 
@@ -48,31 +48,19 @@
 
                 <div>
                     <span>Firstname&nbsp;</span>
-                    <input type="text" name="firstname"/>
+                    <input id="firstname" type="text" name="firstname"/>
                 </div>
                 <div>
                     <span>Lastname&nbsp;</span>
-                    <input type="text" name="lastname"/>
+                    <input id="lastname" type="text" name="lastname"/>
                 </div>
                 <div>
-                    <span>Street&nbsp;</span>
-                    <input type="text" name="street"/>
-                </div>
-                <div>
-                    <span>City&nbsp;</span>
-                    <input type="text" name="city"/>
-                </div>
-                <div>
-                    <span>State&nbsp;</span>
-                    <input type="text" name="state"/>
-                </div>
-                <div>
-                    <span>Zip code&nbsp;</span>
-                    <input type="text" name="zip"/>
+                    <span id="addressText">Address&nbsp;</span>
+                    <textarea id="address" name="address"></textarea>
                 </div>
                 <div>
                     <span>Phone&nbsp;</span>
-                    <input type="text" name="phone"/>
+                    <input id="phone" type="text" name="phone"/>
                 </div>
             </div>
             <div id="shippingDate" class="placeOrderPart">

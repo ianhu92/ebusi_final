@@ -1,7 +1,7 @@
 window.onload = function () {
     getSession();
-    getProduct();
     getCartNum();
+    getProduct();
 }
 function getProduct() {
     var category=document.getElementById("categoryText").innerHTML;

@@ -44,12 +44,12 @@
     <div id="main">
         <h2>Setting</h2>
 
-        <form id="changePassword" name="changePassword" action="ChangePaswServlet" method="post" onsubmit="return validatePassword()">
+        <form id="changePassword" name="changePassword" action="ChangePaswServlet" method="post" onsubmit="return ">
             <h3>Change Password</h3>
 
             <div>
                 <span>Old password*&nbsp;</span>
-                <input id="oldpassword" type="password" name="oldpassword"/>
+                <input type="password" name="oldpassword"/>
             </div>
             <div>
                 <span>New Password*&nbsp;</span>
@@ -65,33 +65,22 @@
         </form>
         <form id="changeSetting" name="changeSetting" action="changeSetting">
             <h3>Change Other Settings</h3>
+
             <div>
                 <span>Email&nbsp;</span>
-                <input type="text" name="email"/>
+                <input type="text" name="password"/>
             </div>
             <div>
                 <span>Firstname&nbsp;</span>
-                <input type="text" name="firstname"/>
+                <input type="text" name="password"/>
             </div>
             <div>
                 <span>Lastname&nbsp;</span>
-                <input type="text" name="lastname"/>
+                <input type="text" name="password"/>
             </div>
             <div>
-                <span>Street&nbsp;</span>
-                <input type="text" name="street"/>
-            </div>
-            <div>
-                <span>City&nbsp;</span>
-                <input type="text" name="city"/>
-            </div>
-            <div>
-                <span>State&nbsp;</span>
-                <input type="text" name="state"/>
-            </div>
-            <div>
-                <span>Phone&nbsp;</span>
-                <input type="text" name="phone"/>
+                <span id="addressText">Address&nbsp;</span>
+                <textarea id="address" name="address"></textarea>
             </div>
             <div>
                 <input type="submit" value="Change Setting"/>
