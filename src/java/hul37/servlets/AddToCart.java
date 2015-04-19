@@ -43,10 +43,14 @@ public class AddToCart extends HttpServlet {
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             CartBean cart = new CartBean(cname, pid, quantity);
             CartDAO cartDAO = new CartDAO();
-            int result = cartDAO.insertProduct(cart);
-            msg = "Error happens when add pid" + pid + "into the cart. Please try again.";
-            if(result != -1)
-                msg = "Seccessfully added to cart.";
+            if(!new CartDAO().checkCart(cart)) {
+                int result = cartDAO.insertProduct(cart);
+                msg = "Error happens when add pid" + pid + "into the cart. Please try again.";
+                if(result != -1)
+                    msg = "Seccessfully added to cart.";
+            }else {
+                msg = "This product has already existed in the shopping cart";
+            }
         }
         out.write(msg);
     }

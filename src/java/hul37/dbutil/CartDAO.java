@@ -28,7 +28,8 @@ public class CartDAO {
     private final String GET_CART = "SELECT * FROM flower_store.cart WHERE cname = ?";
     private final String GET_CART_PRODUCT = "SELECT p.pid pid, pname, price, stock, quantity, img FROM flower_store.cart c, flower_store.product p, flower_store.inventory i WHERE c.cname = ? AND c.pid = p.pid AND c.pid = i.pid ";
     private final String DELETE = "DELETE FROM flower_store.cart WHERE cname = ? AND pid = ?";
-
+    private final String CHECK = "SELECT quantity FROM flower_store.cart WHERE cname = ? AND pid = ?";
+    
     public CartDAO() {
         con = DBConnection.getConnection();
     }
@@ -114,7 +115,20 @@ public class CartDAO {
         al.toArray(cart);
         return cart;
     }
-
+    public boolean checkCart(CartBean cart) {
+        try {
+            pstmt = con.prepareStatement(CHECK);
+            pstmt.setString(1, cart.getCname());
+            pstmt.setInt(2, cart.getPid());
+            rs = pstmt.executeQuery();
+            while(rs.next())
+                return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
     public Connection getCon() {
         return con;
     }
