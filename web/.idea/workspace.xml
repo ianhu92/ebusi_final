@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35be76e0-56b2-43f6-940d-9b2df9831602" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/java/hul37/servlets/GetOrder.java" afterPath="$PROJECT_DIR$/../src/java/hul37/servlets/GetOrder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nbproject/build-impl.xml" afterPath="$PROJECT_DIR$/../nbproject/build-impl.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nbproject/genfiles.properties" afterPath="$PROJECT_DIR$/../nbproject/genfiles.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/header.css" afterPath="$PROJECT_DIR$/css/header.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/order.html" afterPath="$PROJECT_DIR$/order.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/order.js" afterPath="$PROJECT_DIR$/js/order.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nbproject/private/private.xml" afterPath="$PROJECT_DIR$/../nbproject/private/private.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nbproject/project.properties" afterPath="$PROJECT_DIR$/../nbproject/project.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nbproject/project.xml" afterPath="$PROJECT_DIR$/../nbproject/project.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="web.iws" />
     <ignored path=".idea/workspace.xml" />
