@@ -57,14 +57,14 @@ public class GetOrder extends HttpServlet {
                 }
                 JSONObject pid = new JSONObject();
                 pid.put("pid", list[i].getPid());
-                pid.put("card", list[i].getCard());
-                pid.put("datetime", list[i].getDatetime());
                 pid.put("quantity", list[i].getQuantity());
-                pid.put("shippingaddr", list[i].getShippingaddr());
                 pid.put("status", list[i].getStatus());
-                oid.put(list[i].getPid(), pid);
+                
+                oid.put("product", pid);
+                oid.put("datetime", list[i].getDatetime());
+                oid.put("shippingaddr", list[i].getShippingaddr());
             }
-            rspJSON.put(ordernum, oid);
+            rspJSON.put("order", oid);
         }
         out.write(rspJSON.toJSONString());
     }

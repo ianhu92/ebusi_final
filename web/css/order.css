@@ -36,6 +36,9 @@
     width:80%;
     margin:20px auto 0;
 }
+#hiddenOrderLi{
+    /*display:none;*/
+}
 .orderLi{
     border:1px solid #ccc;
     border-radius: 3px;
