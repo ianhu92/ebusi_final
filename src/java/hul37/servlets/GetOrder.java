@@ -49,18 +49,19 @@ public class GetOrder extends HttpServlet {
             org.json.JSONObject oid = new org.json.JSONObject();
                 for (int i = 0; i < list.length; i++) {
                     ordernum = list[i].getOrdernum();
-                    if (old_ordernum != ordernum) {
-                        oid = new org.json.JSONObject();
-                    }
                     oid.put("shippingaddr", list[i].getShippingaddr());
                     oid.put("datetime", list[i].getDatetime());
-                    old_ordernum = ordernum;
                     org.json.JSONObject pid = new org.json.JSONObject();
                     pid.put("pname", list[i].getPname());
                     pid.put("price", list[i].getPrice());
                     pid.put("img", list[i].getImg());
                     pid.put("quantity", list[i].getQuantity());
                     oid.append("product", pid);
+                    if (old_ordernum != ordernum) {
+                        oid = new org.json.JSONObject();
+                        old_ordernum = ordernum;
+                        rspJSON.append("order", oid);
+                    }         
                 }
                 rspJSON.append("order", oid);
                 rspJSON.getJSONObject(msg);
