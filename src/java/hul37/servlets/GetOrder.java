@@ -5,7 +5,7 @@
  */
 package hul37.servlets;
 
-import hul37.beans.OrderBean;
+import hul37.beans.XOrderBean;
 import hul37.dbutil.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,9 +40,10 @@ public class GetOrder extends HttpServlet {
         JSONObject rspJSON = new JSONObject();
         String msg = "Invalid Session";
         HttpSession session = request.getSession(false);
-        if(session != null) {
-            String cname = (String) session.getAttribute("username");
-            OrderBean[] list = orderDAO.getOrder(cname);
+//        if(session != null) {
+//            String cname = (String) session.getAttribute("username");
+        String cname = "john";
+            XOrderBean[] list = orderDAO.getComplexOrder(cname);
             int old_ordernum = -1;
             int ordernum = 0;
             JSONObject oid = new JSONObject();
@@ -53,19 +54,19 @@ public class GetOrder extends HttpServlet {
                         rspJSON.put(old_ordernum, oid);
                     }
                     oid = new JSONObject();
+                    oid.put("shippingaddr", list[i].getShippingaddr());
+                    oid.put("datetime", list[i].getDatetime());
                     old_ordernum = ordernum;
                 }
                 JSONObject pid = new JSONObject();
-                pid.put("pid", list[i].getPid());
+                pid.put("pname", list[i].getPname());
+                pid.put("price", list[i].getPrice());
+                pid.put("img", list[i].getImg());
                 pid.put("quantity", list[i].getQuantity());
-                pid.put("status", list[i].getStatus());
-                
-                oid.put("product", pid);
-                oid.put("datetime", list[i].getDatetime());
-                oid.put("shippingaddr", list[i].getShippingaddr());
+                oid.put(list[i].getPname(), pid);
             }
-            rspJSON.put("order", oid);
-        }
+            rspJSON.put(ordernum, oid);
+//        }
         out.write(rspJSON.toJSONString());
     }
 

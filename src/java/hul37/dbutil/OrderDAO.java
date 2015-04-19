@@ -2,6 +2,7 @@ package hul37.dbutil;
 
 
 import hul37.beans.OrderBean;
+import hul37.beans.XOrderBean;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -31,6 +32,7 @@ public class OrderDAO {
     private final String SUBMIT_ORDERNUM = "INSERT INTO flower_store.ordernum (ordernum, oid) VALUES (?, ?);";    
     private final String GET_ORDER = "SELECT distinct * FROM `order`, `ordernum`\n" +
 "WHERE (order.oid = ordernum.oid) AND cname = ?";
+    private final String GET_XORDER = "SELECT ordernum, order.oid, pname, price, quantity, img, shippingaddr, datetime FROM `order`, `ordernum`, `product`  WHERE (order.oid = ordernum.oid) AND (order.pid = product.pid) AND cname = ?";
     
     public OrderDAO() {
         con = DBConnection.getConnection();
@@ -77,6 +79,32 @@ public class OrderDAO {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }     
         OrderBean[] orders = new OrderBean[al.size()];
+        al.toArray(orders);
+        return orders;
+    }
+    
+    public XOrderBean[] getComplexOrder(String name) {
+        ArrayList<XOrderBean> al = new ArrayList<>();
+        try {
+            pstmt = con.prepareStatement(GET_XORDER);
+            pstmt.setString(1, name);
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+                int ordernum = rs.getInt("ordernum");
+                int oid = rs.getInt("oid");
+                String pname = rs.getString("pname");
+                double price = rs.getDouble("price");
+                int quantity = rs.getInt("quantity");
+                String img = rs.getString("img");
+                String shippingaddr = rs.getString("shippingaddr");
+                Date datetime = rs.getDate("datetime");
+                XOrderBean order = new XOrderBean(ordernum, oid, pname, price, quantity, img, shippingaddr, datetime);
+                al.add(order);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+        XOrderBean[] orders = new XOrderBean[al.size()];
         al.toArray(orders);
         return orders;
     }
