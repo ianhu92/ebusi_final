@@ -7,7 +7,7 @@ function getCartProduct() {
     var xmlhttp = getXMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            alert(xmlhttp.responseText);
+            //alert(xmlhttp.responseText);
             var jo = JSON.parse(xmlhttp.responseText);
             var productid;
             var productname;
@@ -149,7 +149,7 @@ function getCartProduct() {
             document.getElementById("subtotalNum").innerHTML = subtotal.toFixed(2);
         }
     };
-    xmlhttp.open("Post", "GetCartProduct", false);
+    xmlhttp.open("Post", "GetCartProduct", true);
     xmlhttp.send();
 }
 function deleteProduct(a) {
@@ -204,8 +204,10 @@ function changeQuantity(btn) {
         }
     } else if (operation === "+") {
         var inventory = parseInt(document.getElementById("inventory" + productid).firstChild.innerHTML);
-        if (inputText.value === inventory) {
+        if (inputText.value >= inventory) {
             alert("Quantity cannot be greater than inventory.");
+            inputText.value="1";
+            doChangeQuantity(productid, 1);
         } else {
             doChangeQuantity(productid, (quantity + 1));
         }

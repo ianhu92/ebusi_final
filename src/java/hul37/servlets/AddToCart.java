@@ -46,7 +46,7 @@ public class AddToCart extends HttpServlet {
             int result = cartDAO.insertProduct(cart);
             msg = "Error happens when add pid" + pid + "into the cart. Please try again.";
             if(result != -1)
-                msg = "Seccessfully";
+                msg = "Seccessfully added to cart.";
         }
         out.write(msg);
     }

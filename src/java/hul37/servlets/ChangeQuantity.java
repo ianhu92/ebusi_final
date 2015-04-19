@@ -46,7 +46,7 @@ public class ChangeQuantity extends HttpServlet {
             int result = cartDAO.updateProduct(cart);
             msg = "Error happens when update pid" + pid + "'s quanitity. Please try again.";
             if(result != -1)
-                msg = "Seccessfully";
+                msg = "Successfully changed quantity.";
         }
         out.write(msg);
     }

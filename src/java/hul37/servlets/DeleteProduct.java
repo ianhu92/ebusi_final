@@ -45,7 +45,7 @@ public class DeleteProduct extends HttpServlet {
             int result = cartDAO.deleteProduct(cart);
             msg = "Error happens when delete pid" + pid + "into the cart. Please try again.";
             if(result != -1)
-                msg = "Seccessfully";
+                msg = "Seccessfully deleted.";
         }
         out.write(msg);
     }
