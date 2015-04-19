@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 
 /**
  *
@@ -40,34 +40,42 @@ public class GetOrder extends HttpServlet {
         JSONObject rspJSON = new JSONObject();
         String msg = "Invalid Session";
         HttpSession session = request.getSession(false);
-//        if(session != null) {
-//            String cname = (String) session.getAttribute("username");
-        String cname = "john";
+        if (session != null) {
+            String cname = (String) session.getAttribute("username");
             XOrderBean[] list = orderDAO.getComplexOrder(cname);
             int old_ordernum = -1;
             int ordernum = 0;
             JSONObject oid = new JSONObject();
-            for (int i = 0; i < list.length; i++) {
-                ordernum = list[i].getOrdernum();
-                if (old_ordernum != ordernum) {
-                    if (!oid.isEmpty()) {
-                        rspJSON.put(old_ordernum, oid);
+            try {
+                for (int i = 0; i < list.length; i++) {
+                    ordernum = list[i].getOrdernum();
+                    //if (old_ordernum != ordernum) {
+
+                    if (old_ordernum!=-1) {
+                        rspJSON.append(old_ordernum + "", oid);
                     }
                     oid = new JSONObject();
-                    oid.put("shippingaddr", list[i].getShippingaddr());
-                    oid.put("datetime", list[i].getDatetime());
+                    oid.append("shippingaddr", list[i].getShippingaddr());
+                    oid.append("datetime", list[i].getDatetime());
                     old_ordernum = ordernum;
+                    //}
+                    JSONObject pid = new JSONObject();
+                    pid.append("pname", list[i].getPname());
+                    pid.append("price", list[i].getPrice());
+                    pid.append("img", list[i].getImg());
+                    pid.append("quantity", list[i].getQuantity());
+                    oid.append("product", pid);
                 }
-                JSONObject pid = new JSONObject();
-                pid.put("pname", list[i].getPname());
-                pid.put("price", list[i].getPrice());
-                pid.put("img", list[i].getImg());
-                pid.put("quantity", list[i].getQuantity());
-                oid.put(list[i].getPname(), pid);
+                rspJSON.append(ordernum + "", oid);
+                rspJSON.getJSONObject(msg);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            rspJSON.put(ordernum, oid);
-//        }
-        out.write(rspJSON.toJSONString());
+
+            out.write(rspJSON.toString());
+        } else {
+            out.print("Invalid session.");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

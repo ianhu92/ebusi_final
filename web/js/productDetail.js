@@ -1,6 +1,10 @@
 /**
  * Created by Ian on 4/17/2015.
  */
+window.onload= function () {
+    getSession();
+    getCartNum();
+}
 function addToCart(a) {
     var productid = a.id.substring(9);
     if (productid !== "") {
@@ -13,7 +17,7 @@ function addToCart(a) {
         };
         xmlhttp.open("Post", "AddToCart", true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.send("productid=" + productid);
+        xmlhttp.send("productid=" + productid+"&quantity=1");
     }
     else {
         alert("Wrong invocation.");

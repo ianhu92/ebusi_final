@@ -43,12 +43,13 @@ public class CustomerServlet extends HttpServlet {
             if(session != null) {
                 String username = (String) session.getAttribute("username");
                 DBbean db = new DBbean();
-                String sql = "select firstname,lastname,addr,phone from customer where cname='" + username + "'";
+                String sql = "select email,firstname,lastname,addr,phone from customer where cname='" + username + "'";
                 try {
                     ResultSet rs = db.query(sql);
                     JSONObject productlist = new JSONObject();
                     if (rs.next()) {
                         JSONObject product = new JSONObject();
+                        product.append("email",rs.getString("email"));
                         product.append("firstname", rs.getString("firstname"));
                         product.append("lastname", rs.getString("lastname"));
                         product.append("address", rs.getString("addr"));

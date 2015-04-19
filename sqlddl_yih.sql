@@ -357,16 +357,16 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`pid`, `pname`, `type`, `price`, `des`, `img`) VALUES
-(1, 'rose', 'birthday', 2, 'Roses are best known as ornamental plants grown for their flower', '/web/img/flower.jpg'),
-(2, 'daisy', 'valentine', 2, 'daisy are best known as ornamental plants grown for their flower', '/web/img/flower.jpg'),
-(3, 'carnation', 'mothers day', 2, 'carnation are best known as ornamental plants grown for their fl', '/web/img/flower.jpg'),
-(4, 'violet', 'birthday', 4, 'violet are best known as ornamental plants grown for their flowe', '/web/img/flower.jpg'),
-(5, 'rose', 'birthday', 3.2, 'Roses are best known as ornamental plants grown for their flower', '/web/img/flower.jpg'),
-(6, 'rose', 'birthday', 3.2, 'Roses are best known as ornamental plants grown for their flower', '/web/img/flower.jpg'),
-(7, 'rose', 'birthday', 7, 'Roses are best known as ornamental plants grown for their flower', '/web/img/flower.jpg'),
-(8, 'rose', 'birthday', 8, 'Roses are best known as ornamental plants grown for their flower', '/web/img/flower.jpg'),
-(9, 'rose', 'birthday', 9, 'Roses are best known as ornamental plants grown for their flower', '/web/img/flower.jpg'),
-(10, 'rose', 'birthday', 10, 'Roses are best known as ornamental plants grown for their flower', '/web/img/flower.jpg');
+(1, 'rose', 'Best Sellers!', 2, 'Roses are best known as ornamental plants grown for their flower', 'img/flower.jpg'),
+(2, 'daisy', 'Best Sellers!', 2, 'daisy are best known as ornamental plants grown for their flower', 'img/flower.jpg'),
+(3, 'carnation', 'Best Sellers!', 2, 'carnation are best known as ornamental plants grown for their fl', 'img/flower.jpg'),
+(4, 'violet', 'Best Sellers!', 4, 'violet are best known as ornamental plants grown for their flowe', 'img/flower.jpg'),
+(5, 'rose', 'Birthday', 3.2, 'Roses are best known as ornamental plants grown for their flower', 'img/flower.jpg'),
+(6, 'rose', 'Birthday', 3.2, 'Roses are best known as ornamental plants grown for their flower', 'img/flower.jpg'),
+(7, 'rose', 'Christmas', 7, 'Roses are best known as ornamental plants grown for their flower', 'img/flower.jpg'),
+(8, 'rose', 'Christmas', 8, 'Roses are best known as ornamental plants grown for their flower', 'img/flower.jpg'),
+(9, 'rose', 'Mother''s Day', 9, 'Roses are best known as ornamental plants grown for their flower', 'img/flower.jpg'),
+(10, 'rose', 'Valentine''s Day', 10, 'Roses are best known as ornamental plants grown for their flower', 'img/flower.jpg');
 
 --
 -- Indexes for dumped tables

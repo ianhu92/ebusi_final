@@ -46,7 +46,7 @@ public class GetProductDetailServlet extends HttpServlet {
             if (rs.next()) {
                 String productname = rs.getString(2);
                 String price = rs.getString(3);
-                String inventory = rs.getString(4);
+                int inventory =Integer.valueOf(rs.getString(4));
                 String img = rs.getString(5);
                 String description = rs.getString(6);
                 out.println("<!DOCTYPE html>");
@@ -87,14 +87,21 @@ public class GetProductDetailServlet extends HttpServlet {
                 out.println("</div>");
                 out.println("<div id=\"body\">");
                 out.println("<div id=\"img\">");
-                out.println("<img src=\"img/flower.jpg\"/>");
+                out.println("<img src=\""+img+"\"/>");
                 out.println("</div>");
                 out.println("<div id=\"description\">");
-                out.println("<h2 id=\"productName\">aaa</h2>");
-                out.println("<div id=\"price\">$2345</div>");
-                out.println("<div id=\"descriptionText\">hiqwefposij</div>");
+                out.println("<h2 id=\"productName\">"+productname+"</h2>");
+                out.println("<div id=\"price\">$"+price+"</div>");
+                out.println("<div id=\"descriptionText\">"+description+"</div>");
+                if(inventory>1){
+                out.println("<div id=\"inventory\">"+inventory+" items left.</div>");
+                }else if(inventory==1){
+                    out.println("<div id=\"inventory\">"+inventory+" item left.</div>");
+                }else{
+                    out.println("<div id=\"inventory\">Out of stock.</div>");
+                }
                 out.println("<div id=\"btn\">");
-                out.println("<a id=\"addToCart5\" class=\"addToCart\" onclick=\"addToCart(this)\">Add to Cart</a>");
+                out.println("<a id=\"addToCart"+productid+"\" class=\"addToCart\" onclick=\"addToCart(this)\">Add to Cart</a>");
                 out.println("</div>");
                 out.println("</div>");
                 out.println("</div>");

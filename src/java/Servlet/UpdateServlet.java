@@ -36,25 +36,26 @@ public class UpdateServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        
+
         HttpSession session = request.getSession();
         if (session != null) {
-            
+
             String username = (String) session.getAttribute("username");
             String address = request.getParameter("address");
             String firstname = request.getParameter("firstname");
             String lastname = request.getParameter("lastname");
             String email = request.getParameter("email");
+            String phone = request.getParameter("phone");
             DBbean db = new DBbean();
             if (!username.equals("")) {
                 String sql = "update customer set addr='" + address + "'where cname='" + username + "'";
                 try {
                     db.update(sql);
-                    
+
                 } catch (Exception ex) {
                     Logger.getLogger(UpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
             if (!address.equals("")) {
                 String sql = "update customer set firstname='" + firstname + "'where cname='" + username + "'";
@@ -71,7 +72,7 @@ public class UpdateServlet extends HttpServlet {
                 } catch (Exception ex) {
                     Logger.getLogger(UpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
             if (!email.equals("")) {
                 String sql = "update customer set Email='" + email + "'where cname='" + username + "'";
@@ -81,11 +82,31 @@ public class UpdateServlet extends HttpServlet {
                     Logger.getLogger(UpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            out.print("update successfully");
+            if (!phone.equals("")) {
+                String sql = "update customer set phone='" + phone + "'where cname='" + username + "'";
+                try {
+                    db.update(sql);
+                } catch (Exception ex) {
+                    Logger.getLogger(UpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Update setting successfully!</title>");
+            out.println("<script type='text/javascript'>");
+            out.println("window.onload=function(){setTimeout(function(){window.location=\"setting.html\"},5000)}");
+            out.println("</script> ");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h2>Update setting successfully!</h2>");
+            out.println("<h2>The page will be redicted in 5 seconds.</h2>");
+            out.println("</body>");
+            out.println("</html>");
         } else {
             out.print("Invalid Session");
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

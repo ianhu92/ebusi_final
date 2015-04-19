@@ -45,8 +45,9 @@ function logout() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             alert(xmlhttp.responseText);
-            getSession();
-            getCartNum();
+            window.location="index.html";
+            //getSession();
+            //getCartNum();
         }
     };
     xmlhttp.open("Post", "LogoutServlet", true);

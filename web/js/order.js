@@ -4,7 +4,7 @@
 window.onload = function () {
     getSession();
     getCartNum();
-    //getOrder();
+    getOrder();
 }
 
 function getOrder() {
@@ -15,9 +15,8 @@ function getOrder() {
             var jo=JSON.parse(xmlhttp.responseText);
             var ul = document.getElementById("orderUl");
 
-
-            for (var i = 0; i < jo.product.length; i++) {
-                ul.innerHTML = "";
+            for (var i = 0; i < jo.length; i++) {
+                alert("yeah");
             }
         }
     };

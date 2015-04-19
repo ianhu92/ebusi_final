@@ -44,12 +44,12 @@
     <div id="main">
         <h2>Setting</h2>
 
-        <form id="changePassword" name="changePassword" action="ChangePaswServlet" method="post" onsubmit="return ">
+        <form id="changePassword" action="ChangePaswServlet" method="post" onsubmit="return validatePassword()">
             <h3>Change Password</h3>
 
             <div>
                 <span>Old password*&nbsp;</span>
-                <input type="password" name="oldpassword"/>
+                <input id="oldpassword" type="password" name="oldpassword"/>
             </div>
             <div>
                 <span>New Password*&nbsp;</span>
@@ -63,24 +63,28 @@
                 <input type="submit" value="Change Password"/>
             </div>
         </form>
-        <form id="changeSetting" name="changeSetting" action="changeSetting">
+        <form id="changeSetting" action="UpdateServlet" onsubmit="return validateSetting()">
             <h3>Change Other Settings</h3>
 
             <div>
                 <span>Email&nbsp;</span>
-                <input type="text" name="password"/>
+                <input id="email" type="text" name="email"/>
             </div>
             <div>
                 <span>Firstname&nbsp;</span>
-                <input type="text" name="password"/>
+                <input id="firstname" type="text" name="firstname"/>
             </div>
             <div>
                 <span>Lastname&nbsp;</span>
-                <input type="text" name="password"/>
+                <input id="lastname" type="text" name="lastname"/>
             </div>
             <div>
                 <span id="addressText">Address&nbsp;</span>
                 <textarea id="address" name="address"></textarea>
+            </div>
+            <div>
+                <span>Phone&nbsp;</span>
+                <input id="phone" type="text" name="phone"/>
             </div>
             <div>
                 <input type="submit" value="Change Setting"/>

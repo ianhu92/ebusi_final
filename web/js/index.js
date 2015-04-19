@@ -39,6 +39,7 @@ function getProduct() {
                 a.className="productName";
                 a.id="productName"+productid;
                 a.innerHTML = productname;
+                a.href="GetProductDetailServlet?productid="+productid;
                 a.onclick=function(){
                     getProductDetail(this);
                 };

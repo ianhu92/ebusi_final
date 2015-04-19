@@ -58,7 +58,12 @@ public class SubmitOrder extends HttpServlet {
                 int quantity = aPid.getQuantity();
                 cartDAO.deleteProduct(aPid);
                 OrderBean order = new OrderBean(cname, pid, quantity, shippingaddr, "online", "completed", ordernum);
-                orderDAO.submitOrder(order, ordernum);
+                if(orderDAO.submitOrder(order, ordernum)>=0){
+                    msg="Successfully placed order";
+                }else{
+                    msg="sql error.";
+                    break;
+                }
             }
         }
         out.write(msg);

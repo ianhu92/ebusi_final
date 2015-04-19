@@ -35,18 +35,18 @@
     </div>
 </div>
 <div id="body">
-    <form name="signup" id="signup" action="RegisterServlet" method="post" onsubmit="return signup()">
+    <form onsubmit="return signup()" action="RegisterServlet" method="post" id="signup">
         <div>
             <span>Username*&nbsp;</span>
-            <input type="text" name="username"/>
+            <input id="username" type="text" name="username"/>
         </div>
         <div>
             <span>Password*&nbsp;</span>
-            <input type="password" name="password"/>
+            <input id="password" type="password" name="password"/>
         </div>
         <div>
             <span>Password*&nbsp;</span>
-            <input type="password" name="password2"/>
+            <input id="password2" type="password" name="password2"/>
         </div>
         <div>
             <span>Email*&nbsp;</span>
