@@ -41,32 +41,28 @@ public class GetOrder extends HttpServlet {
         String msg = "Invalid Session";
         HttpSession session = request.getSession(false);
         if (session != null) {
+            try{
             String cname = (String) session.getAttribute("username");
             XOrderBean[] list = orderDAO.getComplexOrder(cname);
             int old_ordernum = -1;
             int ordernum = 0;
-            JSONObject oid = new JSONObject();
-            try {
+            org.json.JSONObject oid = new org.json.JSONObject();
                 for (int i = 0; i < list.length; i++) {
                     ordernum = list[i].getOrdernum();
-                    //if (old_ordernum != ordernum) {
-
-                    if (old_ordernum!=-1) {
-                        rspJSON.append(old_ordernum + "", oid);
+                    if (old_ordernum != ordernum) {
+                        oid = new org.json.JSONObject();
                     }
-                    oid = new JSONObject();
-                    oid.append("shippingaddr", list[i].getShippingaddr());
-                    oid.append("datetime", list[i].getDatetime());
+                    oid.put("shippingaddr", list[i].getShippingaddr());
+                    oid.put("datetime", list[i].getDatetime());
                     old_ordernum = ordernum;
-                    //}
-                    JSONObject pid = new JSONObject();
-                    pid.append("pname", list[i].getPname());
-                    pid.append("price", list[i].getPrice());
-                    pid.append("img", list[i].getImg());
-                    pid.append("quantity", list[i].getQuantity());
+                    org.json.JSONObject pid = new org.json.JSONObject();
+                    pid.put("pname", list[i].getPname());
+                    pid.put("price", list[i].getPrice());
+                    pid.put("img", list[i].getImg());
+                    pid.put("quantity", list[i].getQuantity());
                     oid.append("product", pid);
                 }
-                rspJSON.append(ordernum + "", oid);
+                rspJSON.append("order", oid);
                 rspJSON.getJSONObject(msg);
             } catch (Exception e) {
                 e.printStackTrace();
