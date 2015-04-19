@@ -34,7 +34,7 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(false);
-        if (!session.equals(null)) {
+        if (session != null) {
             session.invalidate();
             out.print("Successfully log out.");
         } else {
