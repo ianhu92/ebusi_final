@@ -41,30 +41,43 @@ public class GetOrder extends HttpServlet {
         String msg = "Invalid Session";
         HttpSession session = request.getSession(false);
         if (session != null) {
-            try{
-            String cname = (String) session.getAttribute("username");
-            XOrderBean[] list = orderDAO.getComplexOrder(cname);
-            int old_ordernum = -1;
-            int ordernum = 0;
-            org.json.JSONObject oid = new org.json.JSONObject();
+            try {
+                String cname = (String) session.getAttribute("username");
+                XOrderBean[] list = orderDAO.getComplexOrder(cname);
+                int old_ordernum = -1;
+                int ordernum = 0;
+                org.json.JSONObject oid = new org.json.JSONObject();
                 for (int i = 0; i < list.length; i++) {
                     ordernum = list[i].getOrdernum();
-                    oid.put("shippingaddr", list[i].getShippingaddr());
-                    oid.put("datetime", list[i].getDatetime());
-                    org.json.JSONObject pid = new org.json.JSONObject();
-                    pid.put("pname", list[i].getPname());
-                    pid.put("price", list[i].getPrice());
-                    pid.put("img", list[i].getImg());
-                    pid.put("quantity", list[i].getQuantity());
-                    oid.append("product", pid);
+                    if (old_ordernum == -1) {
+                        old_ordernum = ordernum;
+                    }
+
                     if (old_ordernum != ordernum) {
+                        rspJSON.append("order", oid);
                         oid = new org.json.JSONObject();
                         old_ordernum = ordernum;
-                        rspJSON.append("order", oid);
-                    }         
+                        
+                        oid.put("shippingaddr", list[i].getShippingaddr());
+                        oid.put("datetime", list[i].getDatetime());
+                        org.json.JSONObject pid = new org.json.JSONObject();
+                        pid.put("pname", list[i].getPname());
+                        pid.put("price", list[i].getPrice());
+                        pid.put("img", list[i].getImg());
+                        pid.put("quantity", list[i].getQuantity());
+                        oid.append("product", pid);
+                    } else {
+                        oid.put("shippingaddr", list[i].getShippingaddr());
+                        oid.put("datetime", list[i].getDatetime());
+                        org.json.JSONObject pid = new org.json.JSONObject();
+                        pid.put("pname", list[i].getPname());
+                        pid.put("price", list[i].getPrice());
+                        pid.put("img", list[i].getImg());
+                        pid.put("quantity", list[i].getQuantity());
+                        oid.append("product", pid);
+                    }
                 }
                 rspJSON.append("order", oid);
-                rspJSON.getJSONObject(msg);
             } catch (Exception e) {
                 e.printStackTrace();
             }
